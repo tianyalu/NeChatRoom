@@ -3,6 +3,7 @@ package com.sty.ne.chatroom;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -28,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void addListeners() {
-        WebRTCManager.getInstance().connect(this, etRoom.getText().toString());
+        btnJoinRoom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WebRTCManager.getInstance().connect(MainActivity.this, etRoom.getText().toString());
+            }
+        });
     }
 }

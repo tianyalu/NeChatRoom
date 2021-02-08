@@ -11,8 +11,10 @@ import com.sty.ne.chatroom.socket.JavaWebSocket;
  */
 public class WebRTCManager {
     private static final String WS_Url = "wss://47.115.6.127/wss";
+    //private static final String WS_Url = "wss://47.107.132.117/wss";
     private JavaWebSocket webSocket;
     private PeerConnectionManager peerConnectionManager;
+    private String roomId = "";
 
     private static final class LazyHolder {
         private static WebRTCManager INSTANCE = new WebRTCManager();
@@ -27,8 +29,13 @@ public class WebRTCManager {
     }
 
     public void connect(Activity activity, String roomId) {
+        this.roomId = roomId;
         webSocket = new JavaWebSocket(activity);
         peerConnectionManager = PeerConnectionManager.getInstance();
         webSocket.connect(WS_Url);
+    }
+
+    public void joinRoom(Activity activity) {
+        webSocket.joinRoom(roomId);
     }
 }

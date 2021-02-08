@@ -3,6 +3,9 @@ package com.sty.ne.chatroom.socket;
 import android.app.Activity;
 import android.util.Log;
 
+import com.alibaba.fastjson.JSONObject;
+import com.sty.ne.chatroom.ChatRoomActivity;
+
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
@@ -14,6 +17,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -45,6 +50,7 @@ public class JavaWebSocket {
             @Override
             public void onOpen(ServerHandshake handshakedata) {
                 Log.d(TAG, "onOpen");
+                ChatRoomActivity.openActivity(activity);
             }
 
             @Override
@@ -79,6 +85,26 @@ public class JavaWebSocket {
             }
         }
         mWebSocketClient.connect();
+    }
+
+    /**
+     * 客户端向服务器发送信息
+     * 事件类型：
+     * 1 __join
+     * 2 __answer
+     * 3 __offer
+     * 4 __ice_candidate
+     * 5 __peer
+     */
+    public void joinRoom(String roomId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("eventName", "__join");
+        Map<String, String> childMap= new HashMap<>();
+        childMap.put("room", roomId);
+        map.put("data", childMap);
+        JSONObject jsonObject = new JSONObject(map);
+        String jsonString = jsonObject.toJSONString();
+        mWebSocketClient.send(jsonString);
     }
 
 
