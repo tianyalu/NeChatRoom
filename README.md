@@ -4,11 +4,17 @@
 
 ## 一、理论
 
-### 1.1 参考文档
+### 1.1 `webrtc`之`p2p`通讯流程
+
+![image](https://github.com/tianyalu/NeChatRoom/raw/master/show/webrtc_p2p_process.png)
+
+### 1.2 参考文档
 
 [java websocket clientssl(wss)](https://blog.csdn.net/vertx/article/details/8469535)
 
-### 1.2 坑
+## 二、实践
+
+### 2.1 坑
 
 分别先后启动`turnserver`服务和`webrtc`服务：
 
@@ -23,7 +29,7 @@ node server.js
 
 然后点击 加入房间按钮后报错了。
 
-#### 1.2.1 报错1
+#### 2.1.1 报错1
 
 ```bash
 W/System.err: java.net.ConnectException: failed to connect to /47.115.6.127 (port 443) from /:: (port 42665): connect failed: ETIMEDOUT (Connection timed out)
@@ -35,7 +41,7 @@ W/System.err: java.net.ConnectException: failed to connect to /47.115.6.127 (por
 
 ![image](https://github.com/tianyalu/NeChatRoom/raw/master/show/webrtc_problem1.png)
 
-#### 1.2.2 报错2
+#### 2.1.2 报错2
 
 解决报错1后重新点击加入房间按钮，又报错如下：
 

@@ -1,6 +1,7 @@
 package com.sty.ne.chatroom.connection;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.sty.ne.chatroom.ChatRoomActivity;
 import com.sty.ne.chatroom.socket.JavaWebSocket;
@@ -10,13 +11,18 @@ import org.webrtc.AudioTrack;
 import org.webrtc.Camera1Enumerator;
 import org.webrtc.Camera2Enumerator;
 import org.webrtc.CameraEnumerator;
+import org.webrtc.DataChannel;
 import org.webrtc.DefaultVideoDecoderFactory;
 import org.webrtc.DefaultVideoEncoderFactory;
 import org.webrtc.EglBase;
+import org.webrtc.IceCandidate;
 import org.webrtc.MediaConstraints;
 import org.webrtc.MediaStream;
 import org.webrtc.PeerConnection;
 import org.webrtc.PeerConnectionFactory;
+import org.webrtc.RtpReceiver;
+import org.webrtc.SdpObserver;
+import org.webrtc.SessionDescription;
 import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.VideoCapturer;
 import org.webrtc.VideoDecoderFactory;
@@ -26,7 +32,10 @@ import org.webrtc.VideoTrack;
 import org.webrtc.audio.JavaAudioDeviceModule;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -37,6 +46,7 @@ import java.util.concurrent.Executors;
  * @UpdateDate: 2021/2/5 10:24 PM
  */
 public class PeerConnectionManager {
+    private static final String TAG = PeerConnectionManager.class.getSimpleName();
     private static final String AUDIO_ECHO_CANCELLATION_CONSTRAINT = "googEchoCancellation"; //回音消除
     private static final String AUDIO_NOISE_SUPPRESSION_CONSTRAINT = "googNoiseSuppression"; //噪声抑制
     private static final String AUDIO_AUTO_GAIN_CONTROL_CONSTRAINT = "googAutoGainControl"; //自动增益控制
@@ -50,17 +60,38 @@ public class PeerConnectionManager {
 
     private MediaStream localStream;
     private AudioSource audioSource;
-    private AudioTrack localAudioTrack; //音轨
-    private VideoCapturer captureAndroid; //获取摄像头设备：camera1 camera2 前置还是后置
-    private VideoSource videoSource; //视频源
-    private SurfaceTextureHelper surfaceTextureHelper; //帮助渲染到本地预览
-    private VideoTrack localVideoTrack; //视频轨
+    //音轨
+    private AudioTrack localAudioTrack;
+    //获取摄像头设备：camera1 camera2 前置还是后置
+    private VideoCapturer captureAndroid;
+    //视频源
+    private VideoSource videoSource;
+    //帮助渲染到本地预览
+    private SurfaceTextureHelper surfaceTextureHelper;
+    //视频轨
+    private VideoTrack localVideoTrack;
 
     private String myId;
+    //ICE服务器的集合
+    private ArrayList<PeerConnection.IceServer> iceServers;
+    //会议室所有用户的ID
+    private ArrayList<String> connectionIdArray;
+    //会议室的每一个用户会对本地实现一个p2p连接Peer(PeerConnection)
+    private Map<String, Peer> connectionPeerDic;
+    //当前客户端的角色
+    private Role role;
+
+    // 角色：邀请者，被邀请者
+    // 1v1: 别人给你音视频通话，你就是Receiver
+    // 会议室通话：第一次进入会议室-->Caller，当你已经进入了会议室，别人进入会议室时-->Receiver
+    enum Role {Caller, Receiver}
+
+
 
     private static final class LazyHolder {
         private static PeerConnectionManager INSTANCE = new PeerConnectionManager();
     }
+
     private PeerConnectionManager() {
         peerConnections = new ArrayList<>();
         executor = Executors.newSingleThreadExecutor();
@@ -69,6 +100,21 @@ public class PeerConnectionManager {
     public void initContext(Context context, EglBase eglBase) {
         this.mContext = context;
         this.rootEglBase = eglBase;
+        this.iceServers = new ArrayList<>();
+        this.connectionPeerDic = new HashMap<>();
+        this.connectionIdArray = new ArrayList<>();
+        //https
+        PeerConnection.IceServer iceServer = PeerConnection.IceServer.builder("stun:47.115.6.127:3478?transport=udp")
+                .setUsername("")
+                .setPassword("")
+                .createIceServer();
+        //http
+        PeerConnection.IceServer iceServer2 = PeerConnection.IceServer.builder("turn:47.115.6.127:3478?transport=udp")
+                .setUsername("tianyalu")
+                .setPassword("123456")
+                .createIceServer();
+        iceServers.add(iceServer);
+        iceServers.add(iceServer2);
     }
 
     public static PeerConnectionManager getInstance() {
@@ -92,19 +138,78 @@ public class PeerConnectionManager {
     public void joinToRoom(JavaWebSocket javaWebSocket, boolean isVideoEnable, ArrayList<String> connections, String myId) {
         this.videoEnable = isVideoEnable;
         this.myId = myId;
-        //PeerConnection
+        //PeerConnection 情况1：会议室以及有人的情况
         executor.execute(new Runnable() {
             @Override
             public void run() {
                 if(factory == null) {
                     factory = createConnectionFactory();
                 }
-
                 if(localStream == null) {
                     createLocalStream();
                 }
+                connectionIdArray.addAll(connections);
+                createPeerConnections();
+                //把本地的数据流推向会议室的每一个人的能力
+                addStreams();
+                //发送邀请
+                createOffers();
             }
         });
+    }
+
+    //为所有连接添加推流
+    private void addStreams() {
+        Log.d(TAG, "为所有连接添加流");
+        for (Map.Entry<String, Peer> entry : connectionPeerDic.entrySet()) {
+            if(localStream == null) {
+                createLocalStream();
+            }
+            entry.getValue().peerConnection.addStream(localStream);
+        }
+    }
+
+    /**
+     * 为所有的连接穿件offer
+     */
+    private void createOffers() {
+        //邀请
+        for (Map.Entry<String, Peer> entry : connectionPeerDic.entrySet()) {
+            //赋值角色信息
+            role = Role.Caller;
+
+            Peer mPeer = entry.getValue();
+            //向每一位会议室的人发送邀请，并且传递自己的数据类型（音频、视频的选择）
+            mPeer.peerConnection.createOffer(mPeer, offerOrAnswerConstraint());  //内部网路请求
+        }
+    }
+
+    /**
+     * 设置是否传输音视频
+     * 音频：
+     * 视频：false
+     * @return
+     */
+    private MediaConstraints offerOrAnswerConstraint() {
+        //媒体约束
+        MediaConstraints mediaConstraints = new MediaConstraints();
+        ArrayList<MediaConstraints.KeyValuePair> keyValuePairs = new ArrayList<>();
+        //音频必须传输
+        keyValuePairs.add(new MediaConstraints.KeyValuePair("OfferToReceiveAudio", "true"));
+        //videoEnable
+        keyValuePairs.add(new MediaConstraints.KeyValuePair("OfferToReceiveVideo", String.valueOf(videoEnable)));
+
+        return mediaConstraints;
+    }
+
+    /**
+     * 建立对会议室每一个用户的连接
+     */
+    private void createPeerConnections() {
+        for (String id : connectionIdArray) {
+            Peer peer = new Peer(id);
+            connectionPeerDic.put(id, peer);
+        }
     }
 
     private PeerConnectionFactory createConnectionFactory() {
@@ -191,5 +296,100 @@ public class PeerConnectionManager {
         audioConstraints.mandatory.add(new MediaConstraints.KeyValuePair(AUDIO_AUTO_GAIN_CONTROL_CONSTRAINT, "false"));
         audioConstraints.mandatory.add(new MediaConstraints.KeyValuePair(AUDIO_HIGH_PASS_FILTER_CONSTRAINT, "false"));
         return audioConstraints;
+    }
+
+    private class Peer implements SdpObserver, PeerConnection.Observer{
+        //myId 自己跟远端用户之间的连接
+        private PeerConnection peerConnection;
+        //socket是其它用户的id
+        private String socketId;
+
+        public Peer(String socketId) {
+            PeerConnection.RTCConfiguration rtcConfiguration = new PeerConnection.RTCConfiguration(iceServers);
+            peerConnection = factory.createPeerConnection(rtcConfiguration, this);
+        }
+
+        //内网状态发生改变，如音视频通话中 4G --> 切换成WiFi
+        @Override
+        public void onSignalingChange(PeerConnection.SignalingState signalingState) {
+            Log.d(TAG, "onSignalingChange signalingState: " + signalingState);
+        }
+
+        //连接上了ICE服务器
+        @Override
+        public void onIceConnectionChange(PeerConnection.IceConnectionState iceConnectionState) {
+            Log.d(TAG, "onIceConnectionChange iceConnectionState: " + iceConnectionState);
+        }
+
+        @Override
+        public void onIceConnectionReceivingChange(boolean b) {
+            Log.d(TAG, "onIceConnectionReceivingChange b: " + b);
+        }
+
+        @Override
+        public void onIceGatheringChange(PeerConnection.IceGatheringState iceGatheringState) {
+            Log.d(TAG, "onIceGatheringChange iceGatheringState: " + iceGatheringState);
+        }
+
+        //该方法调用的时机有两类，第一类是在连接到ICE服务器的时候，调用次数是网络中有多少个路由节点（1-n）
+        //第二类（有人进入这个房间）对方到ICE服务器的路由节点，调用次数是视频通话的人在网络中离ICE服务器有多少个路由节点（1-n）
+        @Override
+        public void onIceCandidate(IceCandidate iceCandidate) {
+            Log.d(TAG, "onIceCandidate iceCandidate: " + iceCandidate.toString());
+            //socket --> 传递
+        }
+
+        @Override
+        public void onIceCandidatesRemoved(IceCandidate[] iceCandidates) {
+            Log.d(TAG, "onIceCandidatesRemoved iceCandidates: " + Arrays.toString(iceCandidates));
+        }
+
+        //p2p建立成功之后，mediaStream(视频流，音频流）
+        @Override
+        public void onAddStream(MediaStream mediaStream) {
+            Log.d(TAG, "onAddStream mediaStream: " + mediaStream.toString());
+        }
+
+        @Override
+        public void onRemoveStream(MediaStream mediaStream) {
+            Log.d(TAG, "onRemoveStream mediaStream: " + mediaStream.toString());
+        }
+
+        @Override
+        public void onDataChannel(DataChannel dataChannel) {
+            Log.d(TAG, "onDataChannel dataChannel: " + dataChannel.toString());
+        }
+
+        @Override
+        public void onRenegotiationNeeded() {
+            Log.d(TAG, "onRenegotiationNeeded " );
+        }
+
+        @Override
+        public void onAddTrack(RtpReceiver rtpReceiver, MediaStream[] mediaStreams) {
+            Log.d(TAG, "onAddTrack rtpReceiver: " + rtpReceiver.toString()
+                    + " \nmediaStreams: " + Arrays.toString(mediaStreams));
+        }
+
+        // ---------------------------SDPObserver--------------------------------
+        @Override
+        public void onCreateSuccess(SessionDescription sessionDescription) {
+            Log.d(TAG, "onCreateSuccess sessionDescription: " + sessionDescription.toString());
+        }
+
+        @Override
+        public void onSetSuccess() {
+            Log.d(TAG, "onSetSuccess " );
+        }
+
+        @Override
+        public void onCreateFailure(String s) {
+            Log.d(TAG, "onCreateFailure s: " + s );
+        }
+
+        @Override
+        public void onSetFailure(String s) {
+            Log.d(TAG, "onSetFailure s: " + s );
+        }
     }
 }
