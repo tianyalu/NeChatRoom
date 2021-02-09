@@ -5,6 +5,8 @@ import android.app.Activity;
 import com.sty.ne.chatroom.connection.PeerConnectionManager;
 import com.sty.ne.chatroom.socket.JavaWebSocket;
 
+import org.webrtc.EglBase;
+
 /**
  * @Author: tian
  * @UpdateDate: 2021/2/5 10:25 PM
@@ -35,7 +37,8 @@ public class WebRTCManager {
         webSocket.connect(WS_Url);
     }
 
-    public void joinRoom(Activity activity) {
+    public void joinRoom(Activity activity, EglBase eglBase) {
+        peerConnectionManager.initContext(activity, eglBase);
         webSocket.joinRoom(roomId);
     }
 }

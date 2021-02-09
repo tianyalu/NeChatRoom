@@ -3,8 +3,12 @@ package com.sty.ne.chatroom.socket;
 import android.app.Activity;
 import android.util.Log;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.sty.ne.chatroom.ChatRoomActivity;
+import com.sty.ne.chatroom.connection.PeerConnectionManager;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
@@ -17,6 +21,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,12 +39,14 @@ public class JavaWebSocket {
     private static final String TAG = JavaWebSocket.class.getSimpleName();
     private WebSocketClient mWebSocketClient;
     private Activity activity;
+    private PeerConnectionManager peerConnectionManager;
 
     public JavaWebSocket(Activity activity) {
         this.activity = activity;
     }
 
     public void connect(String wssAddress) {
+        peerConnectionManager = PeerConnectionManager.getInstance();
         URI uri = null;
         try {
             uri = new URI(wssAddress);
@@ -56,6 +63,7 @@ public class JavaWebSocket {
             @Override
             public void onMessage(String message) {
                 Log.d(TAG, "onMessage: " + message);
+                handleMessage(message);
             }
 
             @Override
@@ -85,6 +93,33 @@ public class JavaWebSocket {
             }
         }
         mWebSocketClient.connect();
+    }
+
+    /**
+     * send {"data": {"room": "666555"}, "eventName": "__join"}
+     * onMessage: {"eventName": "_peers", "data": {"connections": ["xxx-id1-xxx", "xxx-id2-xxx"], "you": "xxx-id0-xxx"}}
+     * onMessage: {"eventName": "_new_peer", "data": {"socketId": "xxx-idx-xxx"}}
+     * @param message
+     */
+    private void handleMessage(String message) {
+        Map map = JSON.parseObject(message, Map.class);
+        String eventName = (String) map.get("eventName");
+        //p2p通信
+        if("_peers".equals(eventName)) {
+            handleJoinRoom(map);
+        }
+    }
+
+    private void handleJoinRoom(Map map) {
+        Map data = (Map) map.get("data");
+        JSONArray arr;
+        if(data != null) {
+            arr = (JSONArray) data.get("connections");
+            String js = JSONObject.toJSONString(arr, SerializerFeature.WriteClassName);
+            ArrayList<String> connections = (ArrayList<String>) JSONObject.parseArray(js, String.class);
+            String myId = (String) data.get("you");
+            peerConnectionManager.joinToRoom(this, true, connections, myId);
+        }
     }
 
     /**

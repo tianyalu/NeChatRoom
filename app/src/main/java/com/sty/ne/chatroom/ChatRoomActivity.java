@@ -11,6 +11,8 @@ import android.widget.RelativeLayout;
 
 import com.sty.ne.chatroom.utils.PermissionUtil;
 
+import org.webrtc.EglBase;
+
 import androidx.annotation.Nullable;
 
 /**
@@ -20,6 +22,7 @@ import androidx.annotation.Nullable;
 public class ChatRoomActivity extends Activity {
     private FrameLayout frVideoLayout;
     private WebRTCManager webRTCManager;
+    private EglBase rootEglBase;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,12 +44,13 @@ public class ChatRoomActivity extends Activity {
 
 
     private void initView() {
+        rootEglBase = EglBase.create();
         frVideoLayout = findViewById(R.id.fr_video_view);
         frVideoLayout.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
         webRTCManager = WebRTCManager.getInstance();
         if(!PermissionUtil.isNeedRequestPermission(this)) {
-            webRTCManager.joinRoom(this);
+            webRTCManager.joinRoom(this, rootEglBase);
         }
     }
 }
