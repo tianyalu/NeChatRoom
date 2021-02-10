@@ -8,9 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+    private EditText etSignal;
+    private EditText etPort;
     private EditText etRoom;
+    private EditText etWss;
     private Button btnJoinRoom;
     private Button btnSingleVideo;
+    private Button btnSingleAudio;
+    private Button btnWssTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +27,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        etSignal = findViewById(R.id.et_signal);
+        etPort = findViewById(R.id.et_port);
         etRoom = findViewById(R.id.et_room);
+        etWss = findViewById(R.id.et_wss);
         btnJoinRoom = findViewById(R.id.btn_join_room);
         btnSingleVideo = findViewById(R.id.btn_single_video);
+        btnSingleAudio = findViewById(R.id.btn_single_audio);
+        btnWssTest = findViewById(R.id.btn_wss_test);
     }
 
 

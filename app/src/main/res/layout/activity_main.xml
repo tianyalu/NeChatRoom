@@ -19,6 +19,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <EditText
+                android:id="@+id/et_signal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="wss://47.107.132.117/wss"
+                android:hint="server地址(wss://)" />
+
+            <EditText
+                android:id="@+id/et_port"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="端口" />
+
+            <EditText
                 android:id="@+id/et_room"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -29,7 +42,7 @@
                 android:id="@+id/btn_join_room"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="29dp"
+                android:layout_marginTop="24dp"
                 android:text="加入房间"/>
 
 
@@ -37,8 +50,31 @@
                 android:id="@+id/btn_single_video"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="29dp"
+                android:layout_marginTop="24dp"
                 android:text="一对一视频聊天"/>
+
+            <Button
+                android:id="@+id/btn_single_audio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="一对一语音聊天"/>
+
+            <EditText
+                android:id="@+id/et_wss"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:hint="wss://118.192.68.107:4436"
+                android:text=""/>
+
+            <Button
+                android:id="@+id/btn_wss_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="wss测试"
+                android:textAllCaps="false"/>
         </LinearLayout>
     </ScrollView>
 

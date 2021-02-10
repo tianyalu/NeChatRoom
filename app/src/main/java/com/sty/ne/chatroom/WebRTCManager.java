@@ -41,4 +41,29 @@ public class WebRTCManager {
         peerConnectionManager.initContext(activity, eglBase);
         webSocket.joinRoom(roomId);
     }
+
+    public void toggleMic(boolean enableMic) {
+        if(peerConnectionManager != null) {
+            peerConnectionManager.toggleSpeaker(enableMic);
+        }
+    }
+
+    public void toggleLarge(boolean enableSpeaker) {
+        if(peerConnectionManager != null) {
+            peerConnectionManager.toggleLarge(enableSpeaker);
+        }
+    }
+
+    public void switchCamera() {
+        if(peerConnectionManager != null) {
+            peerConnectionManager.switchCamera();
+        }
+    }
+
+    public void exitRoom() {
+        if(peerConnectionManager != null) {
+            webSocket = null;
+            peerConnectionManager.exitRoom();
+        }
+    }
 }

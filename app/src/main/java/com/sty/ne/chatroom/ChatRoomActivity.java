@@ -25,13 +25,16 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 /**
  * @Author: tian
  * @UpdateDate: 2021/2/8 4:07 PM
  */
-public class ChatRoomActivity extends Activity {
+public class ChatRoomActivity extends AppCompatActivity {
     private FrameLayout frVideoLayout;
+    private FrameLayout flContainer;
     private WebRTCManager webRTCManager;
     private EglBase rootEglBase;
     private VideoTrack localVideoTrack;
@@ -67,6 +70,15 @@ public class ChatRoomActivity extends Activity {
         if(!PermissionUtil.isNeedRequestPermission(this)) {
             webRTCManager.joinRoom(this, rootEglBase);
         }
+        ChatRoomFragment chatRoomFragment = new ChatRoomFragment();
+        replaceFragment(chatRoomFragment);
+    }
+
+    private void replaceFragment(ChatRoomFragment chatRoomFragment) {
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction()
+                .replace(R.id.fl_container, chatRoomFragment)
+                .commit();
     }
 
     /**
@@ -137,5 +149,70 @@ public class ChatRoomActivity extends Activity {
             }
         });
 
+    }
+
+    public void toggleMic(boolean enableMic) {
+        webRTCManager.toggleMic(enableMic);
+    }
+
+    public void toggleLarge(boolean enableSpeaker) {
+        webRTCManager.toggleLarge(enableSpeaker);
+    }
+
+    public void toggleCamera(boolean enableCamera) {
+        if(localVideoTrack != null) {
+            //是否关闭摄像头预览
+            localVideoTrack.setEnabled(enableCamera);
+        }
+    }
+
+    public void switchCamera() {
+        webRTCManager.switchCamera();
+    }
+
+    public void hangUp() {
+        exit();
+        this.finish();
+    }
+
+    private void exit() {
+        webRTCManager.exitRoom();
+    }
+
+    public void onCloseWithId(String id) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                removeView(id);
+            }
+        });
+    }
+
+    private void removeView(String id) {
+        //找到会议室对应的人 布局
+        SurfaceViewRenderer renderer = videoViews.get(id);
+        if(renderer != null) {
+            //释放surfaceView
+            renderer.release();
+            videoViews.remove(id);
+            persons.remove(id);
+            //父容器移除surfaceView
+            frVideoLayout.removeView(renderer);
+
+            int size = videoViews.size();
+            for (int i = 0; i < size; i++) {
+                String peerId = persons.get(i);
+                SurfaceViewRenderer renderer1 = videoViews.get(peerId);
+                if(renderer1 != null) {
+                    FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    layoutParams.width = ScreenUtils.getWidth(size);
+                    layoutParams.height = ScreenUtils.getWidth(size);
+                    layoutParams.leftMargin = ScreenUtils.getX(size, i);
+                    layoutParams.topMargin = ScreenUtils.getX(size, i);
+                    renderer1.setLayoutParams(layoutParams);
+                }
+            }
+        }
     }
 }

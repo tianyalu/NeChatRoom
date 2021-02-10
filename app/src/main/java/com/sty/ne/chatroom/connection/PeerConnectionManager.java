@@ -1,6 +1,7 @@
 package com.sty.ne.chatroom.connection;
 
 import android.content.Context;
+import android.media.AudioManager;
 import android.util.Log;
 
 import com.sty.ne.chatroom.ChatRoomActivity;
@@ -11,6 +12,7 @@ import org.webrtc.AudioTrack;
 import org.webrtc.Camera1Enumerator;
 import org.webrtc.Camera2Enumerator;
 import org.webrtc.CameraEnumerator;
+import org.webrtc.CameraVideoCapturer;
 import org.webrtc.DataChannel;
 import org.webrtc.DefaultVideoDecoderFactory;
 import org.webrtc.DefaultVideoEncoderFactory;
@@ -82,6 +84,8 @@ public class PeerConnectionManager {
     private Role role;
 
     private JavaWebSocket webSocket;
+    //声音服务类
+    private AudioManager mAudioManager;
 
     // 角色：邀请者，被邀请者
     // 1v1: 别人给你音视频通话，你就是Receiver
@@ -117,6 +121,7 @@ public class PeerConnectionManager {
                 .createIceServer();
         iceServers.add(iceServer);
         iceServers.add(iceServer2);
+        mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
     }
 
     public static PeerConnectionManager getInstance() {
@@ -216,6 +221,91 @@ public class PeerConnectionManager {
         });
 
     }
+
+    public void toggleSpeaker(boolean enableMic) {
+        if(localAudioTrack != null) {
+            //切换是否允许将本地的麦克风数据推送到远端
+            localAudioTrack.setEnabled(enableMic);
+        }
+    }
+
+    //免提
+    public void toggleLarge(boolean enableSpeaker) {
+        if(mAudioManager != null) {
+            mAudioManager.setSpeakerphoneOn(enableSpeaker);
+        }
+    }
+
+    //切换前置、后置摄像头
+    public void switchCamera() {
+        if(captureAndroid == null) {
+            return;
+        }
+        if(captureAndroid instanceof CameraVideoCapturer) {
+            CameraVideoCapturer cameraVideoCapturer = (CameraVideoCapturer) captureAndroid;
+            cameraVideoCapturer.switchCamera(null);
+        }
+    }
+
+
+    /**
+     * 耗时操作 webrtc关闭网络
+     */
+    public void exitRoom() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<String> myCopy = (ArrayList<String>) connectionIdArray.clone();
+                for (String id : myCopy) {
+                    closePeerConnection(id);
+                }
+                //清空集合
+                if(connectionIdArray != null) {
+                    connectionIdArray.clear();
+                }
+                //关闭音频推流
+                if(audioSource != null) {
+                    audioSource.dispose();
+                    audioSource = null;
+                }
+                //关闭视频推流
+                if(videoSource != null) {
+                    videoSource.dispose();
+                    videoSource = null;
+                }
+                //关闭摄像头预览
+                if(captureAndroid != null) {
+                    try {
+                        captureAndroid.stopCapture();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                //关闭 surfaceTextureHelper 辅助类
+                if(surfaceTextureHelper != null) {
+                    surfaceTextureHelper.dispose();
+                    surfaceTextureHelper = null;
+                }
+                //关闭工厂
+                if(factory != null) {
+                    factory.dispose();
+                    factory = null;
+                }
+            }
+        });
+    }
+
+    private void closePeerConnection(String id) {
+        //拿到链接的封装对象
+        Peer mPeer = connectionPeerDic.get(id);
+        if(mPeer != null) {
+            //关闭p2p链接
+            mPeer.peerConnection.close();
+        }
+        connectionPeerDic.remove(id);
+        ((ChatRoomActivity) mContext).onCloseWithId(id);
+    }
+
 
     /**
      * 设置是否传输音视频
