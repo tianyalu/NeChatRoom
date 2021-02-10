@@ -12,6 +12,8 @@ import com.sty.ne.chatroom.connection.PeerConnectionManager;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
+import org.webrtc.IceCandidate;
+import org.webrtc.SessionDescription;
 
 import java.io.IOException;
 import java.net.URI;
@@ -108,6 +110,70 @@ public class JavaWebSocket {
         if("_peers".equals(eventName)) {
             handleJoinRoom(map);
         }
+        // offer 主叫 对方响应 _ice_candidate  对方的小目标--> 大目标json
+        if("_ice_candidate".equals(eventName)) {
+            handleRemoteCandidate(map);
+        }
+        // 对方的sdp
+        if("_answer".equals(eventName)) {
+            handleAnswer(map);
+        }
+    }
+
+    /**
+     * 数据格式：和 {@link #sendOffer(String, SessionDescription)} 一致
+     * {
+     *     "data": {
+     *         "socketId": "xxx-id-xxx",
+     *         "sdp" : {
+     *              "type": "answer",
+     *              "sdp": "v=0\r\nno=-60925xxxxx"
+     *         }
+     *     },
+     *     "eventName": "_answer"
+     * }
+     *
+     * @param map
+     */
+    private void handleAnswer(Map map) {
+        Map data = (Map) map.get("data");
+        Map sdpDic;
+        if(data != null) {
+            sdpDic = (Map) data.get("sdp");
+            String socketId = String.valueOf(data.get("socketId"));
+            String sdp = String.valueOf(sdpDic.get("sdp"));
+            peerConnectionManager.onReceiverAnswer(socketId, sdp);
+        }
+    }
+
+    /**
+     * 数据格式：和 {@link #sendIceCandidate(String, IceCandidate)} 一致
+     * {
+     *     "eventName": "_ice_candidate",
+     *     "data": {
+     *         "id": "audio",
+     *         "label": 0,
+     *         "candidate":  "candidate:559267639 1 udp 2122202367 ::1 43353 host generation 0 ufrag sKV4 network-id 2",
+     *         "socketId": "xxx-id-xxx"
+     *     }
+     * }
+     *
+     * @param map
+     */
+    private void handleRemoteCandidate(Map map) {
+        Log.d(TAG, "JavaWebSocket 6 handleRemoteCandidate: ");
+        Map data = (Map) map.get("data");
+        String socketId;
+        if(data != null) {
+            socketId = String.valueOf(data.get("socketId"));
+            String sdpMid = String.valueOf(data.get("id"));
+            sdpMid = (null == sdpMid) ? "video" : sdpMid;
+            int sdpMLineIndex = (int) Double.parseDouble(String.valueOf(data.get("label")));
+            String candidate = String.valueOf(data.get("candidate"));
+            //IceCandidate对象
+            IceCandidate iceCandidate = new IceCandidate(sdpMid, sdpMLineIndex, candidate);
+            peerConnectionManager.onRemoteIceCandidate(socketId, iceCandidate);
+        }
     }
 
     private void handleJoinRoom(Map map) {
@@ -139,6 +205,77 @@ public class JavaWebSocket {
         map.put("data", childMap);
         JSONObject jsonObject = new JSONObject(map);
         String jsonString = jsonObject.toJSONString();
+        mWebSocketClient.send(jsonString);
+    }
+
+    /**
+     * 数据格式：
+     * {
+     *     "data": {
+     *         "socketId": "xxx-id-xxx",
+     *         "sdp" : {
+     *              "type": "answer",
+     *              "sdp": "v=0\r\nno=-60925xxxxx"
+     *         }
+     *     },
+     *     "eventName": "_answer"
+     * }
+     *
+     * 只在交换的时候传递一次
+     *
+     * @param socketId
+     * @param sdp
+     */
+    public void sendOffer(String socketId, SessionDescription sdp) {
+        HashMap<String, Object> childMap = new HashMap<>();
+        childMap.put("type", "offer");
+        childMap.put("sdp", sdp.description);
+
+        HashMap<String, Object> childMap2 = new HashMap<>();
+        childMap2.put("socketId", socketId);
+        childMap2.put("sdp", childMap);
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("eventName", "__offer");
+        map.put("data", childMap2);
+
+        JSONObject object = new JSONObject(map);
+        String jsonString = object.toString();
+        Log.d(TAG, "sendOffer -> " + jsonString);
+        mWebSocketClient.send(jsonString);
+    }
+
+    /**
+     * 数据格式：
+     * {
+     *     "eventName": "_ice_candidate",
+     *     "data": {
+     *         "id": "audio",
+     *         "label": 0,
+     *         "candidate":  "candidate:559267639 1 udp 2122202367 ::1 43353 host generation 0 ufrag sKV4 network-id 2",
+     *         "socketId": "xxx-id-xxx"
+     *     }
+     * }
+     *
+     * 可以传递多次
+     *
+     * @param socketId
+     * @param iceCandidate
+     */
+    public void sendIceCandidate(String socketId, IceCandidate iceCandidate) {
+        HashMap<String, Object> childMap = new HashMap<>();
+        childMap.put("id", iceCandidate.sdpMid);
+        childMap.put("label", iceCandidate.sdpMLineIndex);
+        childMap.put("candidate", iceCandidate.sdp);
+        childMap.put("socketId", socketId);
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("eventName", "__ice_candidate");
+        map.put("data", childMap);
+
+        JSONObject object = new JSONObject(map);
+        String jsonString = object.toString();
+        Log.d(TAG, "sendIceCandidate --> " + jsonString);
         mWebSocketClient.send(jsonString);
     }
 

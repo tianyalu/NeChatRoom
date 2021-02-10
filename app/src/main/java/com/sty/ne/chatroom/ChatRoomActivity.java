@@ -128,4 +128,14 @@ public class ChatRoomActivity extends Activity {
             }
         }
     }
+
+    public void onAddRemoteStream(MediaStream mediaStream, String socketId) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                addView(socketId, mediaStream);
+            }
+        });
+
+    }
 }

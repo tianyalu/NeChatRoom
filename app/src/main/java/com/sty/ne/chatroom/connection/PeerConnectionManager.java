@@ -81,6 +81,8 @@ public class PeerConnectionManager {
     //当前客户端的角色
     private Role role;
 
+    private JavaWebSocket webSocket;
+
     // 角色：邀请者，被邀请者
     // 1v1: 别人给你音视频通话，你就是Receiver
     // 会议室通话：第一次进入会议室-->Caller，当你已经进入了会议室，别人进入会议室时-->Receiver
@@ -136,6 +138,7 @@ public class PeerConnectionManager {
      *  public boolean disableNetworkMonitor;  //网络监控
      */
     public void joinToRoom(JavaWebSocket javaWebSocket, boolean isVideoEnable, ArrayList<String> connections, String myId) {
+        this.webSocket = javaWebSocket;
         this.videoEnable = isVideoEnable;
         this.myId = myId;
         //PeerConnection 情况1：会议室以及有人的情况
@@ -170,7 +173,7 @@ public class PeerConnectionManager {
     }
 
     /**
-     * 为所有的连接穿件offer
+     * 为所有的连接创建offer
      */
     private void createOffers() {
         //邀请
@@ -182,6 +185,36 @@ public class PeerConnectionManager {
             //向每一位会议室的人发送邀请，并且传递自己的数据类型（音频、视频的选择）
             mPeer.peerConnection.createOffer(mPeer, offerOrAnswerConstraint());  //内部网路请求
         }
+    }
+
+    /**
+     * 情况一： 当别人在会议室，我再进去
+     * 情况二：
+     * @param socketId
+     * @param iceCandidate
+     */
+    public void onRemoteIceCandidate(String socketId, IceCandidate iceCandidate) {
+        //通过socketId 取出连接对象
+        Peer peer = connectionPeerDic.get(socketId);
+        if(peer != null) {
+            peer.peerConnection.addIceCandidate(iceCandidate);
+        }
+    }
+
+
+    public void onReceiverAnswer(String socketId, String sdp) {
+        //对方的回话 sdp
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Peer mPeer = connectionPeerDic.get(socketId);
+                SessionDescription sessionDescription = new SessionDescription(SessionDescription.Type.ANSWER, sdp);
+                if(mPeer != null) {
+                    mPeer.peerConnection.setRemoteDescription(mPeer, sessionDescription);
+                }
+            }
+        });
+
     }
 
     /**
@@ -305,6 +338,7 @@ public class PeerConnectionManager {
         private String socketId;
 
         public Peer(String socketId) {
+            this.socketId = socketId;
             PeerConnection.RTCConfiguration rtcConfiguration = new PeerConnection.RTCConfiguration(iceServers);
             peerConnection = factory.createPeerConnection(rtcConfiguration, this);
         }
@@ -337,6 +371,7 @@ public class PeerConnectionManager {
         public void onIceCandidate(IceCandidate iceCandidate) {
             Log.d(TAG, "onIceCandidate iceCandidate: " + iceCandidate.toString());
             //socket --> 传递
+            webSocket.sendIceCandidate(socketId, iceCandidate);
         }
 
         @Override
@@ -345,9 +380,11 @@ public class PeerConnectionManager {
         }
 
         //p2p建立成功之后，mediaStream(视频流，音频流）
+        //子线程
         @Override
         public void onAddStream(MediaStream mediaStream) {
             Log.d(TAG, "onAddStream mediaStream: " + mediaStream.toString());
+            ((ChatRoomActivity)mContext).onAddRemoteStream(mediaStream, socketId);
         }
 
         @Override
@@ -375,11 +412,18 @@ public class PeerConnectionManager {
         @Override
         public void onCreateSuccess(SessionDescription sessionDescription) {
             Log.d(TAG, "onCreateSuccess sessionDescription: " + sessionDescription.toString());
+            //设置本地的SDP，如果设置成功则回调onSetSuccess()方法
+            peerConnection.setLocalDescription(this, sessionDescription);
         }
 
         @Override
         public void onSetSuccess() {
             Log.d(TAG, "onSetSuccess " );
+            //交换彼此的sdp iceCandidate
+            if(peerConnection.signalingState() == PeerConnection.SignalingState.HAVE_LOCAL_OFFER) {
+                //webSocket
+                webSocket.sendOffer(socketId, peerConnection.getLocalDescription());
+            }
         }
 
         @Override
