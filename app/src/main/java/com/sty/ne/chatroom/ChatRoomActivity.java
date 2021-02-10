@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import com.sty.ne.chatroom.interfaces.IViewCallback;
 import com.sty.ne.chatroom.utils.PermissionUtil;
 import com.sty.ne.chatroom.utils.ScreenUtils;
 
@@ -32,7 +33,7 @@ import androidx.fragment.app.FragmentManager;
  * @Author: tian
  * @UpdateDate: 2021/2/8 4:07 PM
  */
-public class ChatRoomActivity extends AppCompatActivity {
+public class ChatRoomActivity extends AppCompatActivity implements IViewCallback {
     private FrameLayout frVideoLayout;
     private FrameLayout flContainer;
     private WebRTCManager webRTCManager;
@@ -67,6 +68,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         frVideoLayout.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
         webRTCManager = WebRTCManager.getInstance();
+        webRTCManager.setViewCallback(this);
         if(!PermissionUtil.isNeedRequestPermission(this)) {
             webRTCManager.joinRoom(this, rootEglBase);
         }
@@ -86,6 +88,7 @@ public class ChatRoomActivity extends AppCompatActivity {
      * @param stream 本地流
      * @param userId 自己的ID
      */
+    @Override
     public void onSetLocalStream(MediaStream stream, String userId) {
         List<VideoTrack> videoTracks = stream.videoTracks;
         if(videoTracks.size() > 0) {
@@ -141,6 +144,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
     }
 
+    @Override
     public void onAddRemoteStream(MediaStream mediaStream, String socketId) {
         runOnUiThread(new Runnable() {
             @Override
@@ -179,6 +183,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         webRTCManager.exitRoom();
     }
 
+    @Override
     public void onCloseWithId(String id) {
         runOnUiThread(new Runnable() {
             @Override

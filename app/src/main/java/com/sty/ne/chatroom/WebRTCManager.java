@@ -3,6 +3,7 @@ package com.sty.ne.chatroom;
 import android.app.Activity;
 
 import com.sty.ne.chatroom.connection.PeerConnectionManager;
+import com.sty.ne.chatroom.interfaces.IViewCallback;
 import com.sty.ne.chatroom.socket.JavaWebSocket;
 
 import org.webrtc.EglBase;
@@ -28,6 +29,12 @@ public class WebRTCManager {
 
     public static WebRTCManager getInstance() {
         return LazyHolder.INSTANCE;
+    }
+
+    public void setViewCallback(IViewCallback iViewCallback) {
+        if(peerConnectionManager != null) {
+            peerConnectionManager.setViewCallback(iViewCallback);
+        }
     }
 
     public void connect(Activity activity, String roomId) {

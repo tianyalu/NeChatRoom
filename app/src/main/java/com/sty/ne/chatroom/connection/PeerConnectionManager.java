@@ -4,7 +4,7 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.util.Log;
 
-import com.sty.ne.chatroom.ChatRoomActivity;
+import com.sty.ne.chatroom.interfaces.IViewCallback;
 import com.sty.ne.chatroom.socket.JavaWebSocket;
 
 import org.webrtc.AudioSource;
@@ -86,12 +86,12 @@ public class PeerConnectionManager {
     private JavaWebSocket webSocket;
     //声音服务类
     private AudioManager mAudioManager;
+    private IViewCallback viewCallback;
 
     // 角色：邀请者，被邀请者
     // 1v1: 别人给你音视频通话，你就是Receiver
     // 会议室通话：第一次进入会议室-->Caller，当你已经进入了会议室，别人进入会议室时-->Receiver
     enum Role {Caller, Receiver}
-
 
 
     private static final class LazyHolder {
@@ -126,6 +126,10 @@ public class PeerConnectionManager {
 
     public static PeerConnectionManager getInstance() {
         return LazyHolder.INSTANCE;
+    }
+
+    public void setViewCallback(IViewCallback viewCallback) {
+        this.viewCallback = viewCallback;
     }
 
     /**
@@ -303,7 +307,9 @@ public class PeerConnectionManager {
             mPeer.peerConnection.close();
         }
         connectionPeerDic.remove(id);
-        ((ChatRoomActivity) mContext).onCloseWithId(id);
+        if(viewCallback != null) {
+            viewCallback.onCloseWithId(id);
+        }
     }
 
 
@@ -370,8 +376,8 @@ public class PeerConnectionManager {
             //视频轨
             localVideoTrack = factory.createVideoTrack("ARDAMSv0", videoSource);
             localStream.addTrack(localVideoTrack);
-            if(mContext != null) {
-                ((ChatRoomActivity)mContext).onSetLocalStream(localStream, myId);
+            if(viewCallback != null) {
+                viewCallback.onSetLocalStream(localStream, myId);
             }
         }
     }
@@ -474,7 +480,9 @@ public class PeerConnectionManager {
         @Override
         public void onAddStream(MediaStream mediaStream) {
             Log.d(TAG, "onAddStream mediaStream: " + mediaStream.toString());
-            ((ChatRoomActivity)mContext).onAddRemoteStream(mediaStream, socketId);
+            if(viewCallback != null) {
+                viewCallback.onAddRemoteStream(mediaStream, socketId);
+            }
         }
 
         @Override
