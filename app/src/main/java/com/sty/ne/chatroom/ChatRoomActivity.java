@@ -1,9 +1,11 @@
 package com.sty.ne.chatroom;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -25,22 +27,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 /**
+ * 群聊界面
  * @Author: tian
  * @UpdateDate: 2021/2/8 4:07 PM
  */
 public class ChatRoomActivity extends AppCompatActivity implements IViewCallback {
-    private FrameLayout frVideoLayout;
-    private FrameLayout flContainer;
+    private static final String TAG = ChatRoomActivity.class.getSimpleName();
+    private FrameLayout flVideoLayout;
     private WebRTCManager webRTCManager;
     private EglBase rootEglBase;
     private VideoTrack localVideoTrack;
 
     private Map<String, SurfaceViewRenderer> videoViews = new HashMap<>();
+    private Map<String, ProxyVideoSink> sinks = new HashMap<>();
     private List<String> persons = new ArrayList<>();
 
     @Override
@@ -54,6 +59,7 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
         initView();
+        startCall();
     }
 
     public static void openActivity(Activity activity) {
@@ -64,14 +70,10 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
 
     private void initView() {
         rootEglBase = EglBase.create();
-        frVideoLayout = findViewById(R.id.fr_video_view);
-        frVideoLayout.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+        flVideoLayout = findViewById(R.id.fl_video_view);
+        flVideoLayout.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
-        webRTCManager = WebRTCManager.getInstance();
-        webRTCManager.setViewCallback(this);
-        if(!PermissionUtil.isNeedRequestPermission(this)) {
-            webRTCManager.joinRoom(this, rootEglBase);
-        }
+
         ChatRoomFragment chatRoomFragment = new ChatRoomFragment();
         replaceFragment(chatRoomFragment);
     }
@@ -81,6 +83,14 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
         manager.beginTransaction()
                 .replace(R.id.fl_container, chatRoomFragment)
                 .commit();
+    }
+
+    private void startCall() {
+        webRTCManager = WebRTCManager.getInstance();
+        webRTCManager.setViewCallback(this);
+        if(!PermissionUtil.isNeedRequestPermission(this)) {
+            webRTCManager.joinRoom(this, rootEglBase);
+        }
     }
 
     /**
@@ -109,26 +119,31 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
      */
     private void addView(String userId, MediaStream stream) {
         //不使用SurfaceView 而是采用webrtc给我们提供的 SurfaceViewRenderer
-        SurfaceViewRenderer renderer = new SurfaceViewRenderer(this);
+        SurfaceViewRenderer renderer = new SurfaceViewRenderer(ChatRoomActivity.this);
         //初始化SurfaceView
         renderer.init(rootEglBase.getEglBaseContext(), null);
         //设置缩放模式：SCALE_ASPECT_FIT 按照view的宽度和高度设置；SCALE_ASPECT_FILL 按照摄像头预览的画面大小设置
         renderer.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
         //翻转
         renderer.setMirror(true);
+        // set render
+        ProxyVideoSink sink = new ProxyVideoSink();
+        sink.setTarget(renderer);
         //将摄像头的数据渲染到surfaceViewRender
         if(stream.videoTracks.size() > 0) {
-            stream.videoTracks.get(0).addSink(renderer);
+            stream.videoTracks.get(0).addSink(sink);
         }
 
         //会议室 1+N 个人
         videoViews.put(userId, renderer);
+        sinks.put(userId, sink);
         persons.add(userId);
 
         //将SurfaceViewRenderer添加到FrameLayout中（此时width=0, height=0）
-        frVideoLayout.addView(renderer);
+        flVideoLayout.addView(renderer);
         //指定宽度和高度
         int size = videoViews.size();
+        Log.d(TAG, "size: " + size);
         for (int i = 0; i < size; i++) {
             String peerId = persons.get(i);
             SurfaceViewRenderer renderer1 = videoViews.get(peerId);
@@ -138,7 +153,9 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
                 layoutParams.width = ScreenUtils.getWidth(size);
                 layoutParams.height = ScreenUtils.getWidth(size);
                 layoutParams.leftMargin = ScreenUtils.getX(size, i);
-                layoutParams.topMargin = ScreenUtils.getX(size, i);
+                layoutParams.topMargin = ScreenUtils.getY(size, i);
+                Log.d(TAG, "width: " + layoutParams.width + " height: " + layoutParams.height +
+                        " leftMargin: " + layoutParams.leftMargin + " topMargin: " + layoutParams.topMargin);
                 renderer1.setLayoutParams(layoutParams);
             }
         }
@@ -155,10 +172,12 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
 
     }
 
-    public void toggleMic(boolean enableMic) {
-        webRTCManager.toggleMic(enableMic);
+    //静音
+    public void toggleMute(boolean enableMute) {
+        webRTCManager.toggleMute(enableMute);
     }
 
+    //免提
     public void toggleLarge(boolean enableSpeaker) {
         webRTCManager.toggleLarge(enableSpeaker);
     }
@@ -179,10 +198,6 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
         this.finish();
     }
 
-    private void exit() {
-        webRTCManager.exitRoom();
-    }
-
     @Override
     public void onCloseWithId(String id) {
         runOnUiThread(new Runnable() {
@@ -195,6 +210,12 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
 
     private void removeView(String id) {
         //找到会议室对应的人 布局
+        ProxyVideoSink sink = sinks.get(id);
+        if(sink != null) {
+            sink.setTarget(null);
+        }
+        sinks.remove(id);
+
         SurfaceViewRenderer renderer = videoViews.get(id);
         if(renderer != null) {
             //释放surfaceView
@@ -202,7 +223,7 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
             videoViews.remove(id);
             persons.remove(id);
             //父容器移除surfaceView
-            frVideoLayout.removeView(renderer);
+            flVideoLayout.removeView(renderer);
 
             int size = videoViews.size();
             for (int i = 0; i < size; i++) {
@@ -214,10 +235,47 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
                     layoutParams.width = ScreenUtils.getWidth(size);
                     layoutParams.height = ScreenUtils.getWidth(size);
                     layoutParams.leftMargin = ScreenUtils.getX(size, i);
-                    layoutParams.topMargin = ScreenUtils.getX(size, i);
+                    layoutParams.topMargin = ScreenUtils.getY(size, i);
                     renderer1.setLayoutParams(layoutParams);
                 }
             }
         }
+    }
+
+    //屏蔽返回键
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return keyCode == KeyEvent.KEYCODE_BACK || super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onDestroy() {
+        exit();
+        super.onDestroy();
+    }
+
+    private void exit() {
+        webRTCManager.exitRoom();
+        for (SurfaceViewRenderer renderer : videoViews.values()) {
+            renderer.release();
+        }
+        for (ProxyVideoSink sink : sinks.values()) {
+            sink.setTarget(null);
+        }
+        videoViews.clear();
+        sinks.clear();
+        persons.clear();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        for (int i = 0; i < permissions.length; i++) {
+            Log.i(TAG, "[Permission] " + permissions[i] + " is " + (grantResults[i] == PackageManager.PERMISSION_GRANTED ? "granted" : "denied"));
+            if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                finish();
+                break;
+            }
+        }
+        webRTCManager.joinRoom(this, rootEglBase);
     }
 }

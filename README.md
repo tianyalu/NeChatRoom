@@ -57,3 +57,40 @@ cd /usr/local/nginx/sbin
 ```
 
 启动之后再尝试就能成功建立连接了。
+
+### 2.2 好的实践
+
+为方便操作，使服务在后台运行，可以采用`nohup`方式编写后台启动三大服务脚本，`run.sh`文件内容如下：
+
+```bash
+#!/bin/bash
+NODE=`which node`
+nohup $NODE server.js & > log.txt  # nohup代表后台运行 &代表重定向 >表示重定向位置
+nohup /usr/local/bin/turnserver --syslog -a -f --min-port=32355 --max-port=65535 --user=tianyalu:123456 -r test --cert=/cert/cert.pem --pkey==/cert/cert.pem --log-file=stdout -v & > log.txt
+
+NGINX=`which nginx`
+nohup $NGINX ./nginx & > log.txt
+```
+
+该文件位于`/root/webrtc/WebrtcNodeJS`目录下，不过要注意把`nginx`添加到环境变量中去：
+
+```bash
+vim ~/.bash_profile
+```
+
+修改文件内容如下：
+
+```bash
+PATH=$PATH:$HOME/bin
+PATH=$PATH:/usr/local/nginx/sbin  # 添加此行代码
+
+export PATH
+export PATH=$PATH:/usr/local/lib
+```
+
+运行命令使修改生效：
+
+```bash
+source ~/.bash_profile
+```
+

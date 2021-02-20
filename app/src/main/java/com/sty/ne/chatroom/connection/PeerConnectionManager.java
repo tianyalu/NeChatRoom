@@ -4,7 +4,10 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.util.Log;
 
+import com.sty.ne.chatroom.bean.MediaType;
+import com.sty.ne.chatroom.bean.MyIceServer;
 import com.sty.ne.chatroom.interfaces.IViewCallback;
+import com.sty.ne.chatroom.socket.IWebSocket;
 import com.sty.ne.chatroom.socket.JavaWebSocket;
 
 import org.webrtc.AudioSource;
@@ -23,6 +26,7 @@ import org.webrtc.MediaStream;
 import org.webrtc.PeerConnection;
 import org.webrtc.PeerConnectionFactory;
 import org.webrtc.RtpReceiver;
+import org.webrtc.RtpTransceiver;
 import org.webrtc.SdpObserver;
 import org.webrtc.SessionDescription;
 import org.webrtc.SurfaceTextureHelper;
@@ -36,10 +40,15 @@ import org.webrtc.audio.JavaAudioDeviceModule;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import androidx.annotation.Nullable;
 
 /**
  * 管理p2p通讯的类
@@ -49,10 +58,6 @@ import java.util.concurrent.Executors;
  */
 public class PeerConnectionManager {
     private static final String TAG = PeerConnectionManager.class.getSimpleName();
-    private static final String AUDIO_ECHO_CANCELLATION_CONSTRAINT = "googEchoCancellation"; //回音消除
-    private static final String AUDIO_NOISE_SUPPRESSION_CONSTRAINT = "googNoiseSuppression"; //噪声抑制
-    private static final String AUDIO_AUTO_GAIN_CONTROL_CONSTRAINT = "googAutoGainControl"; //自动增益控制
-    private static final String AUDIO_HIGH_PASS_FILTER_CONSTRAINT = "googHighpassFilter"; //高通滤波器
     private Context mContext;
     private List<PeerConnection> peerConnections;
     private boolean videoEnable;
@@ -83,55 +88,58 @@ public class PeerConnectionManager {
     //当前客户端的角色
     private Role role;
 
-    private JavaWebSocket webSocket;
+    private IWebSocket iwebSocket;
     //声音服务类
     private AudioManager mAudioManager;
     private IViewCallback viewCallback;
+    private int mediaType;
 
     // 角色：邀请者，被邀请者
     // 1v1: 别人给你音视频通话，你就是Receiver
     // 会议室通话：第一次进入会议室-->Caller，当你已经进入了会议室，别人进入会议室时-->Receiver
     enum Role {Caller, Receiver}
 
-
-    private static final class LazyHolder {
-        private static PeerConnectionManager INSTANCE = new PeerConnectionManager();
-    }
-
-    private PeerConnectionManager() {
+    public PeerConnectionManager(IWebSocket webSocket, MyIceServer[] myIceServers) {
         peerConnections = new ArrayList<>();
         executor = Executors.newSingleThreadExecutor();
+        this.connectionPeerDic = new HashMap<>();
+        this.connectionIdArray = new ArrayList<>();
+        this.iceServers = new ArrayList<>();
+
+        this.iwebSocket = webSocket;
+        for (MyIceServer myIceServer : myIceServers) {
+            PeerConnection.IceServer iceServer = PeerConnection.IceServer.builder(myIceServer.uri)
+                    .setUsername(myIceServer.username)
+                    .setPassword(myIceServer.password)
+                    .createIceServer();
+            iceServers.add(iceServer);
+        }
+
+        //https
+//        PeerConnection.IceServer iceServer = PeerConnection.IceServer.builder("stun:47.115.6.127:3478?transport=udp")
+//                .setUsername("")
+//                .setPassword("")
+//                .createIceServer();
+//        //http
+//        PeerConnection.IceServer iceServer2 = PeerConnection.IceServer.builder("turn:47.115.6.127:3478?transport=udp")
+//                .setUsername("tianyalu")
+//                .setPassword("123456")
+//                .createIceServer();
+//        iceServers.add(iceServer);
+//        iceServers.add(iceServer2);
     }
 
     public void initContext(Context context, EglBase eglBase) {
         this.mContext = context;
         this.rootEglBase = eglBase;
-        this.iceServers = new ArrayList<>();
-        this.connectionPeerDic = new HashMap<>();
-        this.connectionIdArray = new ArrayList<>();
-        //https
-        PeerConnection.IceServer iceServer = PeerConnection.IceServer.builder("stun:47.115.6.127:3478?transport=udp")
-                .setUsername("")
-                .setPassword("")
-                .createIceServer();
-        //http
-        PeerConnection.IceServer iceServer2 = PeerConnection.IceServer.builder("turn:47.115.6.127:3478?transport=udp")
-                .setUsername("tianyalu")
-                .setPassword("123456")
-                .createIceServer();
-        iceServers.add(iceServer);
-        iceServers.add(iceServer2);
         mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-    }
-
-    public static PeerConnectionManager getInstance() {
-        return LazyHolder.INSTANCE;
     }
 
     public void setViewCallback(IViewCallback viewCallback) {
         this.viewCallback = viewCallback;
     }
 
+    // ===================================webSocket回调信息=======================================
     /**
      *  PeerConnectionFactory.Options:
      *
@@ -146,26 +154,43 @@ public class PeerConnectionManager {
      *  public boolean disableEncryption;  //解码器
      *  public boolean disableNetworkMonitor;  //网络监控
      */
-    public void joinToRoom(JavaWebSocket javaWebSocket, boolean isVideoEnable, ArrayList<String> connections, String myId) {
-        this.webSocket = javaWebSocket;
+    public void onJoinToRoom(ArrayList<String> connections, String myId, boolean isVideoEnable, int mediaType) {
         this.videoEnable = isVideoEnable;
+        this.mediaType = mediaType;
         this.myId = myId;
-        //PeerConnection 情况1：会议室以及有人的情况
+        //PeerConnection 情况1：会议室没有有人的情况
         executor.execute(new Runnable() {
             @Override
             public void run() {
+                connectionIdArray.addAll(connections);
+
                 if(factory == null) {
                     factory = createConnectionFactory();
                 }
                 if(localStream == null) {
                     createLocalStream();
                 }
-                connectionIdArray.addAll(connections);
+
                 createPeerConnections();
                 //把本地的数据流推向会议室的每一个人的能力
                 addStreams();
                 //发送邀请
                 createOffers();
+            }
+        });
+    }
+
+    public void onRemoteJoinToRoom(String socketId) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                if(localStream == null) {
+                    createLocalStream();
+                }
+                Peer mPeer = new Peer(socketId);
+                mPeer.peerConnection.addStream(localStream);
+                connectionIdArray.add(socketId);
+                connectionPeerDic.put(socketId, mPeer);
             }
         });
     }
@@ -210,6 +235,38 @@ public class PeerConnectionManager {
         }
     }
 
+    public void onRemoteIceCandidateRemove(String socketId, List<IceCandidate> iceCandidates) {
+        //todo 移除
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "send onRemoteIceCandidateRemove");
+            }
+        });
+    }
+
+    public void onRemoteOutRoom(String socketId) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                closePeerConnection(socketId);
+            }
+        });
+    }
+
+    public void onReceiveOffer(String socketId, String description) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                role = Role.Receiver;
+                Peer mPeer = connectionPeerDic.get(socketId);
+                SessionDescription sdp = new SessionDescription(SessionDescription.Type.OFFER, description);
+                if(mPeer != null) {
+                    mPeer.peerConnection.setRemoteDescription(mPeer, sdp);
+                }
+            }
+        });
+    }
 
     public void onReceiverAnswer(String socketId, String sdp) {
         //对方的回话 sdp
@@ -223,13 +280,28 @@ public class PeerConnectionManager {
                 }
             }
         });
-
     }
 
-    public void toggleSpeaker(boolean enableMic) {
+    private void closePeerConnection(String id) {
+        //拿到链接的封装对象
+        Peer mPeer = connectionPeerDic.get(id);
+        if(mPeer != null) {
+            //关闭p2p链接
+            mPeer.peerConnection.close();
+        }
+        connectionPeerDic.remove(id);
+        connectionIdArray.remove(id);
+        if(viewCallback != null) {
+            viewCallback.onCloseWithId(id);
+        }
+    }
+
+    //**************************************↓逻辑控制↓**************************************
+    //静音
+    public void toggleMute(boolean enableMute) {
         if(localAudioTrack != null) {
             //切换是否允许将本地的麦克风数据推送到远端
-            localAudioTrack.setEnabled(enableMic);
+            localAudioTrack.setEnabled(enableMute);
         }
     }
 
@@ -248,6 +320,8 @@ public class PeerConnectionManager {
         if(captureAndroid instanceof CameraVideoCapturer) {
             CameraVideoCapturer cameraVideoCapturer = (CameraVideoCapturer) captureAndroid;
             cameraVideoCapturer.switchCamera(null);
+        }else {
+            Log.e(TAG, "Will not switch camera, video capture is not a camera");
         }
     }
 
@@ -256,6 +330,9 @@ public class PeerConnectionManager {
      * 耗时操作 webrtc关闭网络
      */
     public void exitRoom() {
+        if(viewCallback != null) {
+            viewCallback = null;
+        }
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -284,6 +361,8 @@ public class PeerConnectionManager {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                    captureAndroid.dispose();
+                    captureAndroid = null;
                 }
                 //关闭 surfaceTextureHelper 辅助类
                 if(surfaceTextureHelper != null) {
@@ -295,41 +374,15 @@ public class PeerConnectionManager {
                     factory.dispose();
                     factory = null;
                 }
+
+                if(iwebSocket != null) {
+                    iwebSocket.close();
+                    iwebSocket = null;
+                }
             }
         });
     }
-
-    private void closePeerConnection(String id) {
-        //拿到链接的封装对象
-        Peer mPeer = connectionPeerDic.get(id);
-        if(mPeer != null) {
-            //关闭p2p链接
-            mPeer.peerConnection.close();
-        }
-        connectionPeerDic.remove(id);
-        if(viewCallback != null) {
-            viewCallback.onCloseWithId(id);
-        }
-    }
-
-
-    /**
-     * 设置是否传输音视频
-     * 音频：
-     * 视频：false
-     * @return
-     */
-    private MediaConstraints offerOrAnswerConstraint() {
-        //媒体约束
-        MediaConstraints mediaConstraints = new MediaConstraints();
-        ArrayList<MediaConstraints.KeyValuePair> keyValuePairs = new ArrayList<>();
-        //音频必须传输
-        keyValuePairs.add(new MediaConstraints.KeyValuePair("OfferToReceiveAudio", "true"));
-        //videoEnable
-        keyValuePairs.add(new MediaConstraints.KeyValuePair("OfferToReceiveVideo", String.valueOf(videoEnable)));
-
-        return mediaConstraints;
-    }
+    //**************************************↑逻辑控制↑**************************************
 
     /**
      * 建立对会议室每一个用户的连接
@@ -369,6 +422,9 @@ public class PeerConnectionManager {
             captureAndroid = createVideoCapture();
             videoSource = factory.createVideoSource(captureAndroid.isScreencast());
             surfaceTextureHelper = SurfaceTextureHelper.create("CaptureThread", rootEglBase.getEglBaseContext());
+            if(mediaType == MediaType.TYPE_MEETING) {
+                //videoSource.adaptOutputFormat(200, 200, 15);
+            }
             //初始化captureAndroid
             captureAndroid.initialize(surfaceTextureHelper, mContext, videoSource.getCapturerObserver());
             //摄像头预览的宽度、高度和帧率
@@ -376,9 +432,10 @@ public class PeerConnectionManager {
             //视频轨
             localVideoTrack = factory.createVideoTrack("ARDAMSv0", videoSource);
             localStream.addTrack(localVideoTrack);
-            if(viewCallback != null) {
-                viewCallback.onSetLocalStream(localStream, myId);
-            }
+        }
+
+        if(viewCallback != null) {
+            viewCallback.onSetLocalStream(localStream, myId);
         }
     }
 
@@ -398,6 +455,7 @@ public class PeerConnectionManager {
     private VideoCapturer createCameraCapture(CameraEnumerator enumerator) {
         //0:back 1:front
         String[] deviceNames = enumerator.getDeviceNames();
+        //First try to find front facing camera
         for (String deviceName : deviceNames) {
             if(enumerator.isFrontFacing(deviceName)) {
                 VideoCapturer videoCapturer = enumerator.createCapturer(deviceName, null);
@@ -406,6 +464,8 @@ public class PeerConnectionManager {
                 }
             }
         }
+
+        //Front facing camera not found, try something else
         for (String deviceName : deviceNames) {
             if(!enumerator.isFrontFacing(deviceName)) {
                 VideoCapturer videoCapturer = enumerator.createCapturer(deviceName, null);
@@ -418,14 +478,39 @@ public class PeerConnectionManager {
         return null;
     }
 
+    //*************************************************↓各种约束↓******************************************
+    private static final String AUDIO_ECHO_CANCELLATION_CONSTRAINT = "googEchoCancellation"; //回音消除
+    private static final String AUDIO_NOISE_SUPPRESSION_CONSTRAINT = "googNoiseSuppression"; //噪声抑制
+    private static final String AUDIO_AUTO_GAIN_CONTROL_CONSTRAINT = "googAutoGainControl"; //自动增益控制
+    private static final String AUDIO_HIGH_PASS_FILTER_CONSTRAINT = "googHighpassFilter"; //高通滤波器
+
     private MediaConstraints createAudioConstraints() {
         MediaConstraints audioConstraints = new MediaConstraints();
         audioConstraints.mandatory.add(new MediaConstraints.KeyValuePair(AUDIO_ECHO_CANCELLATION_CONSTRAINT, "true"));
         audioConstraints.mandatory.add(new MediaConstraints.KeyValuePair(AUDIO_NOISE_SUPPRESSION_CONSTRAINT, "true"));
         audioConstraints.mandatory.add(new MediaConstraints.KeyValuePair(AUDIO_AUTO_GAIN_CONTROL_CONSTRAINT, "false"));
-        audioConstraints.mandatory.add(new MediaConstraints.KeyValuePair(AUDIO_HIGH_PASS_FILTER_CONSTRAINT, "false"));
+        audioConstraints.mandatory.add(new MediaConstraints.KeyValuePair(AUDIO_HIGH_PASS_FILTER_CONSTRAINT, "true"));
         return audioConstraints;
     }
+
+    /**
+     * 设置是否传输音视频
+     * 音频：
+     * 视频：false
+     * @return
+     */
+    private MediaConstraints offerOrAnswerConstraint() {
+        //媒体约束
+        MediaConstraints mediaConstraints = new MediaConstraints();
+        ArrayList<MediaConstraints.KeyValuePair> keyValuePairs = new ArrayList<>();
+        //音频必须传输
+        keyValuePairs.add(new MediaConstraints.KeyValuePair("OfferToReceiveAudio", "true"));
+        //videoEnable
+        keyValuePairs.add(new MediaConstraints.KeyValuePair("OfferToReceiveVideo", String.valueOf(videoEnable)));
+
+        return mediaConstraints;
+    }
+    //*************************************************↑各种约束↑******************************************
 
     private class Peer implements SdpObserver, PeerConnection.Observer{
         //myId 自己跟远端用户之间的连接
@@ -435,10 +520,10 @@ public class PeerConnectionManager {
 
         public Peer(String socketId) {
             this.socketId = socketId;
-            PeerConnection.RTCConfiguration rtcConfiguration = new PeerConnection.RTCConfiguration(iceServers);
-            peerConnection = factory.createPeerConnection(rtcConfiguration, this);
+            peerConnection = createPeerConnection();
         }
 
+        //****************************PeerConnection.Observer****************************/
         //内网状态发生改变，如音视频通话中 4G --> 切换成WiFi
         @Override
         public void onSignalingChange(PeerConnection.SignalingState signalingState) {
@@ -467,7 +552,7 @@ public class PeerConnectionManager {
         public void onIceCandidate(IceCandidate iceCandidate) {
             Log.d(TAG, "onIceCandidate iceCandidate: " + iceCandidate.toString());
             //socket --> 传递
-            webSocket.sendIceCandidate(socketId, iceCandidate);
+            iwebSocket.sendIceCandidate(socketId, iceCandidate);
         }
 
         @Override
@@ -488,6 +573,9 @@ public class PeerConnectionManager {
         @Override
         public void onRemoveStream(MediaStream mediaStream) {
             Log.d(TAG, "onRemoveStream mediaStream: " + mediaStream.toString());
+            if(viewCallback != null) {
+                viewCallback.onCloseWithId(socketId);
+            }
         }
 
         @Override
@@ -506,6 +594,11 @@ public class PeerConnectionManager {
                     + " \nmediaStreams: " + Arrays.toString(mediaStreams));
         }
 
+        @Override
+        public void onTrack(RtpTransceiver transceiver) {
+            Log.d(TAG, "onTrack transceiver: " + transceiver.toString());
+        }
+
         // ---------------------------SDPObserver--------------------------------
         @Override
         public void onCreateSuccess(SessionDescription sessionDescription) {
@@ -518,9 +611,23 @@ public class PeerConnectionManager {
         public void onSetSuccess() {
             Log.d(TAG, "onSetSuccess " );
             //交换彼此的sdp iceCandidate
-            if(peerConnection.signalingState() == PeerConnection.SignalingState.HAVE_LOCAL_OFFER) {
-                //webSocket
-                webSocket.sendOffer(socketId, peerConnection.getLocalDescription());
+            if(peerConnection.signalingState() == PeerConnection.SignalingState.HAVE_REMOTE_OFFER) {
+                peerConnection.createAnswer(this, offerOrAnswerConstraint());
+            }else if(peerConnection.signalingState() == PeerConnection.SignalingState.HAVE_LOCAL_OFFER) {
+                //判断连接状态为本地发送offer
+                if(role == Role.Receiver) {
+                    //接收者，发送Answer
+                    iwebSocket.sendAnswer(socketId, peerConnection.getLocalDescription().description);
+                }else if(role == Role.Caller) {
+                    //发送者，发送自己的offer
+                    iwebSocket.sendOffer(socketId, peerConnection.getLocalDescription().description);
+                }
+            }else if(peerConnection.signalingState() == PeerConnection.SignalingState.STABLE) {
+                //Stable 稳定的
+                if(role == Role.Receiver) {
+                    Log.d(TAG, "onSetSuccess: 最后一步测试");
+                    iwebSocket.sendAnswer(socketId, peerConnection.getLocalDescription().description);
+                }
             }
         }
 
@@ -533,5 +640,96 @@ public class PeerConnectionManager {
         public void onSetFailure(String s) {
             Log.d(TAG, "onSetFailure s: " + s );
         }
+
+        //初始化 RTCPeerConnection连接管道
+        private PeerConnection createPeerConnection() {
+            if(factory == null) {
+                factory = createConnectionFactory();
+            }
+            //管道连接抽象类实现方法
+            PeerConnection.RTCConfiguration rtcConfiguration = new PeerConnection.RTCConfiguration(iceServers);
+            return factory.createPeerConnection(rtcConfiguration, this);
+        }
+    }
+
+    // ===================================替换编码方式=========================================
+    private static String preferCodec(String sdpDescription, String codec, boolean isAudio) {
+        final String[] lines = sdpDescription.split("\r\n");
+        final int mLineIndex = findMediaDescriptionLine(isAudio, lines);
+        if (mLineIndex == -1) {
+            Log.w(TAG, "No mediaDescription line, so can't prefer " + codec);
+            return sdpDescription;
+        }
+        // A list with all the payload types with name |codec|. The payload types are integers in the
+        // range 96-127, but they are stored as strings here.
+        final List<String> codecPayloadTypes = new ArrayList<>();
+        // a=rtpmap:<payload type> <encoding name>/<clock rate> [/<encoding parameters>]
+        final Pattern codecPattern = Pattern.compile("^a=rtpmap:(\\d+) " + codec + "(/\\d+)+[\r]?$");
+        for (String line : lines) {
+            Matcher codecMatcher = codecPattern.matcher(line);
+            if (codecMatcher.matches()) {
+                codecPayloadTypes.add(codecMatcher.group(1));
+            }
+        }
+        if (codecPayloadTypes.isEmpty()) {
+            Log.w(TAG, "No payload types with name " + codec);
+            return sdpDescription;
+        }
+
+        final String newMLine = movePayloadTypesToFront(codecPayloadTypes, lines[mLineIndex]);
+        if (newMLine == null) {
+            return sdpDescription;
+        }
+        Log.d(TAG, "Change media description from: " + lines[mLineIndex] + " to " + newMLine);
+        lines[mLineIndex] = newMLine;
+        return joinString(Arrays.asList(lines), "\r\n", true /* delimiterAtEnd */);
+    }
+
+    private static int findMediaDescriptionLine(boolean isAudio, String[] sdpLines) {
+        final String mediaDescription = isAudio ? "m=audio " : "m=video ";
+        for (int i = 0; i < sdpLines.length; ++i) {
+            if (sdpLines[i].startsWith(mediaDescription)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private static @Nullable
+    String movePayloadTypesToFront(
+            List<String> preferredPayloadTypes, String mLine) {
+        // The format of the media description line should be: m=<media> <port> <proto> <fmt> ...
+        final List<String> origLineParts = Arrays.asList(mLine.split(" "));
+        if (origLineParts.size() <= 3) {
+            Log.e(TAG, "Wrong SDP media description format: " + mLine);
+            return null;
+        }
+        final List<String> header = origLineParts.subList(0, 3);
+        final List<String> unpreferredPayloadTypes =
+                new ArrayList<>(origLineParts.subList(3, origLineParts.size()));
+        unpreferredPayloadTypes.removeAll(preferredPayloadTypes);
+        // Reconstruct the line with |preferredPayloadTypes| moved to the beginning of the payload
+        // types.
+        final List<String> newLineParts = new ArrayList<>();
+        newLineParts.addAll(header);
+        newLineParts.addAll(preferredPayloadTypes);
+        newLineParts.addAll(unpreferredPayloadTypes);
+        return joinString(newLineParts, " ", false /* delimiterAtEnd */);
+    }
+
+    private static String joinString(
+            Iterable<? extends CharSequence> s, String delimiter, boolean delimiterAtEnd) {
+        Iterator<? extends CharSequence> iter = s.iterator();
+        if (!iter.hasNext()) {
+            return "";
+        }
+        StringBuilder buffer = new StringBuilder(iter.next());
+        while (iter.hasNext()) {
+            buffer.append(delimiter).append(iter.next());
+        }
+        if (delimiterAtEnd) {
+            buffer.append(delimiter);
+        }
+        return buffer.toString();
     }
 }

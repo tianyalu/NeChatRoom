@@ -22,8 +22,9 @@
                 android:id="@+id/et_signal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="wss://47.107.132.117/wss"
+                android:text="wss://47.115.6.127/wss"
                 android:hint="server地址(wss://)" />
+            <!-- android:text="wss://47.107.132.117/wss"-->
 
             <EditText
                 android:id="@+id/et_port"

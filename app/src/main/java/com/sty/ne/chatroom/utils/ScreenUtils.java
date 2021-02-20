@@ -17,7 +17,7 @@ public class ScreenUtils {
         if(mScreenWidth == 0) {
             WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
             if(manager != null) {
-                mScreenWidth = manager.getDefaultDisplay().getDisplayId();
+                mScreenWidth = manager.getDefaultDisplay().getWidth();
             }
         }
     }
@@ -49,12 +49,46 @@ public class ScreenUtils {
             if(size == 7 && index == 6) { //当会议室有7个人的时候
                 return mScreenWidth / 3;
             }
+            if(size == 8) {
+                if(index == 6) {
+                    return mScreenWidth / 6;
+                }
+                if(index == 7) {
+                    return mScreenWidth / 2;
+                }
+            }
             return (index % 3) * mScreenWidth / 3;
         }
 
         return 0;
     }
 
+    public static int getY(int size, int index) {
+        if(size < 3) {
+            return mScreenWidth / 4;
+        }else if(size < 5) {
+            if(index < 2) {
+                return 0;
+            }else {
+                return mScreenWidth / 2;
+            }
+        }else if(size < 7) {
+            if(index < 3) {
+                return mScreenWidth / 2 - (mScreenWidth / 3);
+            }else {
+                return mScreenWidth / 2;
+            }
+        }else if(size <= 9) {
+            if(index < 3) {
+                return 0;
+            }else if(index < 6) {
+                return mScreenWidth / 3;
+            }else {
+                return mScreenWidth / 3 * 2;
+            }
+        }
+        return 0;
+    }
 
     public static int dip2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;

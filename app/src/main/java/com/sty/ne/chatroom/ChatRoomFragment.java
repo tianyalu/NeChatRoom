@@ -27,7 +27,7 @@ public class ChatRoomFragment extends Fragment {
     private TextView wr_open_camera;
     private ChatRoomActivity activity;
 
-    private boolean enableMic = true;
+    private boolean enableMute = true;
     private boolean enableSpeaker = true;
     private boolean enableCamera = true;
 
@@ -62,9 +62,9 @@ public class ChatRoomFragment extends Fragment {
 
     private void initListener() {
         wr_switch_mute.setOnClickListener(v -> {
-            enableMic = !enableMic;
-            toggleMic(enableMic);
-            activity.toggleMic(enableMic);
+            enableMute = !enableMute;
+            toggleMute(enableMute);
+            activity.toggleMute(enableMute);
 
         });
         wr_switch_hang_up.setOnClickListener(new View.OnClickListener() {
@@ -100,8 +100,8 @@ public class ChatRoomFragment extends Fragment {
         });
     }
 
-    private void toggleMic(boolean isMicEnable) {
-        if (isMicEnable) {
+    private void toggleMute(boolean isMuteEnable) {
+        if (isMuteEnable) {
             Drawable drawable = ContextCompat.getDrawable(activity, R.drawable.webrtc_mute_default);
             if (drawable != null) {
                 drawable.setBounds(0, 0, ScreenUtils.dip2px(activity, 60), ScreenUtils.dip2px(activity, 60));

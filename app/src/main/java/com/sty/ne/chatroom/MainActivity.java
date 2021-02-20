@@ -42,8 +42,10 @@ public class MainActivity extends AppCompatActivity {
         btnJoinRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WebRTCManager.getInstance().connect(MainActivity.this, etRoom.getText().toString());
+                WebRTCUtil.call(MainActivity.this, etSignal.getText().toString(), etRoom.getText().toString());
+                //WebRTCManager.getInstance().connect(MainActivity.this, etRoom.getText().toString());
             }
         });
     }
+
 }
