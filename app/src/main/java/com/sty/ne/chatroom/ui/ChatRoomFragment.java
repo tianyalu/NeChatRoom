@@ -1,4 +1,4 @@
-package com.sty.ne.chatroom;
+package com.sty.ne.chatroom.ui;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.sty.ne.chatroom.R;
 import com.sty.ne.chatroom.utils.ScreenUtils;
 
 import androidx.annotation.NonNull;

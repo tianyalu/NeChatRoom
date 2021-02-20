@@ -1,4 +1,4 @@
-package com.sty.ne.chatroom;
+package com.sty.ne.chatroom.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import com.sty.ne.chatroom.ProxyVideoSink;
+import com.sty.ne.chatroom.R;
+import com.sty.ne.chatroom.WebRTCManager;
 import com.sty.ne.chatroom.interfaces.IViewCallback;
 import com.sty.ne.chatroom.utils.PermissionUtil;
 import com.sty.ne.chatroom.utils.ScreenUtils;

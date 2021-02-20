@@ -46,6 +46,33 @@ public class MainActivity extends AppCompatActivity {
                 //WebRTCManager.getInstance().connect(MainActivity.this, etRoom.getText().toString());
             }
         });
+
+        btnSingleVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WebRTCUtil.callSingle(MainActivity.this,
+                        etSignal.getText().toString(),
+                        etRoom.getText().toString().trim() + ":" + etPort.getText().toString().trim(),
+                        true);
+            }
+        });
+
+        btnSingleAudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WebRTCUtil.callSingle(MainActivity.this,
+                        etSignal.getText().toString(),
+                        etRoom.getText().toString().trim() + ":" + etPort.getText().toString().trim(),
+                        false);
+            }
+        });
+
+        btnWssTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WebRTCUtil.testWs(etWss.getText().toString());
+            }
+        });
     }
 
 }

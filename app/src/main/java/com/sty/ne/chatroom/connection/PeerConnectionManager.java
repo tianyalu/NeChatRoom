@@ -195,17 +195,6 @@ public class PeerConnectionManager {
         });
     }
 
-    //为所有连接添加推流
-    private void addStreams() {
-        Log.d(TAG, "为所有连接添加流");
-        for (Map.Entry<String, Peer> entry : connectionPeerDic.entrySet()) {
-            if(localStream == null) {
-                createLocalStream();
-            }
-            entry.getValue().peerConnection.addStream(localStream);
-        }
-    }
-
     /**
      * 为所有的连接创建offer
      */
@@ -229,10 +218,15 @@ public class PeerConnectionManager {
      */
     public void onRemoteIceCandidate(String socketId, IceCandidate iceCandidate) {
         //通过socketId 取出连接对象
-        Peer peer = connectionPeerDic.get(socketId);
-        if(peer != null) {
-            peer.peerConnection.addIceCandidate(iceCandidate);
-        }
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Peer peer = connectionPeerDic.get(socketId);
+                if(peer != null) {
+                    peer.peerConnection.addIceCandidate(iceCandidate);
+                }
+            }
+        });
     }
 
     public void onRemoteIceCandidateRemove(String socketId, List<IceCandidate> iceCandidates) {
@@ -391,6 +385,17 @@ public class PeerConnectionManager {
         for (String id : connectionIdArray) {
             Peer peer = new Peer(id);
             connectionPeerDic.put(id, peer);
+        }
+    }
+
+    //为所有连接添加推流
+    private void addStreams() {
+        Log.d(TAG, "为所有连接添加流");
+        for (Map.Entry<String, Peer> entry : connectionPeerDic.entrySet()) {
+            if(localStream == null) {
+                createLocalStream();
+            }
+            entry.getValue().peerConnection.addStream(localStream);
         }
     }
 

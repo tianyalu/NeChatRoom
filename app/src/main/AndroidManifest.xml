@@ -32,7 +32,18 @@
         </activity>
         <activity
             android:label="聊天室"
-            android:name=".ChatRoomActivity" />
+            android:name=".ui.ChatRoomActivity"
+            android:configChanges="orientation|smallestScreenSize|screenSize|screenLayout"
+            android:launchMode="singleInstance"
+            android:screenOrientation="fullUser"
+            android:theme="@style/Webrtc.AppTheme.NoActionBar"/>
+        <activity
+            android:label="单人聊天"
+            android:name=".ui.ChatSingleActivity"
+            android:configChanges="orientation|smallestScreenSize|screenSize|screenLayout"
+            android:launchMode="singleInstance"
+            android:screenOrientation="fullUser"
+            android:theme="@style/Webrtc.AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

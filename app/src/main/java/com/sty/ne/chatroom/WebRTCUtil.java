@@ -8,6 +8,8 @@ import com.sty.ne.chatroom.bean.MediaType;
 import com.sty.ne.chatroom.bean.MyIceServer;
 import com.sty.ne.chatroom.socket.IConnectEvent;
 import com.sty.ne.chatroom.socket.JavaWebSocket;
+import com.sty.ne.chatroom.ui.ChatRoomActivity;
+import com.sty.ne.chatroom.ui.ChatSingleActivity;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
@@ -46,7 +48,7 @@ public class WebRTCUtil {
 
             @Override
             public void onSuccess() {
-                //todo
+                ChatSingleActivity.openActivity(activity, videoEnable);
             }
 
             @Override
