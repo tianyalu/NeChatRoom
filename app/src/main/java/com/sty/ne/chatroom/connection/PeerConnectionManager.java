@@ -59,7 +59,6 @@ import androidx.annotation.Nullable;
 public class PeerConnectionManager {
     private static final String TAG = PeerConnectionManager.class.getSimpleName();
     private Context mContext;
-    private List<PeerConnection> peerConnections;
     private boolean videoEnable;
     private ExecutorService executor;
     private PeerConnectionFactory factory;
@@ -100,8 +99,7 @@ public class PeerConnectionManager {
     enum Role {Caller, Receiver}
 
     public PeerConnectionManager(IWebSocket webSocket, MyIceServer[] myIceServers) {
-        peerConnections = new ArrayList<>();
-        executor = Executors.newSingleThreadExecutor();
+        this.executor = Executors.newSingleThreadExecutor();
         this.connectionPeerDic = new HashMap<>();
         this.connectionIdArray = new ArrayList<>();
         this.iceServers = new ArrayList<>();
@@ -416,11 +414,11 @@ public class PeerConnectionManager {
     }
 
     private void createLocalStream() {
-        localStream = factory.createLocalMediaStream("ARDAMS");
+        this.localStream = factory.createLocalMediaStream("ARDAMS");
         //音频
-        audioSource = factory.createAudioSource(createAudioConstraints());
+        this.audioSource = factory.createAudioSource(createAudioConstraints());
         //采集音频
-        localAudioTrack = factory.createAudioTrack("ARDAMSa0", audioSource);
+        this.localAudioTrack = factory.createAudioTrack("ARDAMSa0", audioSource);
         localStream.addTrack(localAudioTrack); //添加音轨
         if(videoEnable) {
             //视频源
@@ -525,7 +523,7 @@ public class PeerConnectionManager {
 
         public Peer(String socketId) {
             this.socketId = socketId;
-            peerConnection = createPeerConnection();
+            this.peerConnection = createPeerConnection();
         }
 
         //****************************PeerConnection.Observer****************************/
@@ -622,16 +620,22 @@ public class PeerConnectionManager {
                 //判断连接状态为本地发送offer
                 if(role == Role.Receiver) {
                     //接收者，发送Answer
-                    iwebSocket.sendAnswer(socketId, peerConnection.getLocalDescription().description);
+                    if(iwebSocket != null) {
+                        iwebSocket.sendAnswer(socketId, peerConnection.getLocalDescription().description);
+                    }
                 }else if(role == Role.Caller) {
                     //发送者，发送自己的offer
-                    iwebSocket.sendOffer(socketId, peerConnection.getLocalDescription().description);
+                    if(iwebSocket != null) {
+                        iwebSocket.sendOffer(socketId, peerConnection.getLocalDescription().description);
+                    }
                 }
             }else if(peerConnection.signalingState() == PeerConnection.SignalingState.STABLE) {
                 //Stable 稳定的
                 if(role == Role.Receiver) {
                     Log.d(TAG, "onSetSuccess: 最后一步测试");
-                    iwebSocket.sendAnswer(socketId, peerConnection.getLocalDescription().description);
+                    if(iwebSocket != null) {
+                        iwebSocket.sendAnswer(socketId, peerConnection.getLocalDescription().description);
+                    }
                 }
             }
         }

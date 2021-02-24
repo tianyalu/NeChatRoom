@@ -218,7 +218,8 @@ public class ChatSingleActivity extends AppCompatActivity {
         });
 
         if(!PermissionUtil.isNeedRequestPermission(ChatSingleActivity.this)) {
-            rtcManager.joinRoom(ChatSingleActivity.this, rootEglBase);
+//            rtcManager.joinRoom(ChatSingleActivity.this, rootEglBase);
+            rtcManager.joinRoom(getApplicationContext(), rootEglBase);
         }
     }
 

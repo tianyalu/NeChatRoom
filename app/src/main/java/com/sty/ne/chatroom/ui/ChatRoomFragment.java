@@ -41,7 +41,7 @@ public class ChatRoomFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (rootView == null) {
-            rootView = onInitloadView(inflater, container, savedInstanceState);
+            rootView = onInitLoadView(inflater, container, savedInstanceState);
             initView(rootView);
             initListener();
         }
@@ -49,7 +49,7 @@ public class ChatRoomFragment extends Fragment {
     }
 
 
-    private View onInitloadView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    private View onInitLoadView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.wr_fragment_room_control, container, false);
     }
 

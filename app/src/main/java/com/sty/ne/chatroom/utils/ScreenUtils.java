@@ -3,8 +3,6 @@ package com.sty.ne.chatroom.utils;
 import android.content.Context;
 import android.view.WindowManager;
 
-import java.util.concurrent.ConcurrentLinkedDeque;
-
 /**
  * @Author: tian
  * @UpdateDate: 2021/2/8 4:21 PM
