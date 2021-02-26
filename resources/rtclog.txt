@@ -1,0 +1,702 @@
+虚拟机第一次进入房间：
+02-26 04:20:13.041 1716-1716/? E/libprocessgroup: failed to make and chown /acct/uid_10067: Read-only file system
+02-26 04:20:13.041 1716-1716/? W/Zygote: createProcessGroup failed, kernel missing CONFIG_CGROUP_CPUACCT?
+02-26 04:20:13.041 1716-1716/? I/art: Late-enabling -Xcheck:jni
+02-26 04:20:14.198 1716-1716/com.sty.ne.chatroom W/art: Before Android 4.1, method android.graphics.PorterDuffColorFilter androidx.vectordrawable.graphics.drawable.VectorDrawableCompat.updateTintFilter(android.graphics.PorterDuffColorFilter, android.content.res.ColorStateList, android.graphics.PorterDuff$Mode) would have incorrectly overridden the package-private method in android.graphics.drawable.Drawable
+02-26 04:20:14.259 1716-1716/com.sty.ne.chatroom I/art: Rejecting re-init on previously-failed class java.lang.Class<androidx.core.view.ViewCompat$2>
+02-26 04:20:14.260 1716-1716/com.sty.ne.chatroom I/art: Rejecting re-init on previously-failed class java.lang.Class<androidx.core.view.ViewCompat$2>
+02-26 04:20:14.393 1716-1735/com.sty.ne.chatroom D/OpenGLRenderer: Use EGL_SWAP_BEHAVIOR_PRESERVED: true
+02-26 04:20:14.459 1716-1716/com.sty.ne.chatroom D/Atlas: Validating map...
+02-26 04:20:14.496 1716-1716/com.sty.ne.chatroom D/LeakCanary: LeakCanary is running and ready to detect leaks
+02-26 04:20:14.571 1716-1735/com.sty.ne.chatroom D/libEGL: loaded /system/lib/egl/libEGL_emulation.so
+02-26 04:20:14.571 1716-1735/com.sty.ne.chatroom D/libEGL: loaded /system/lib/egl/libGLESv1_CM_emulation.so
+02-26 04:20:14.579 1716-1735/com.sty.ne.chatroom D/libEGL: loaded /system/lib/egl/libGLESv2_emulation.so
+02-26 04:20:14.655 1716-1735/com.sty.ne.chatroom I/OpenGLRenderer: Initialized EGL, version 1.4
+02-26 04:20:14.664 1716-1735/com.sty.ne.chatroom D/OpenGLRenderer: Enabling debug mode 0
+02-26 04:20:14.670 1716-1735/com.sty.ne.chatroom W/EGL_emulation: eglSurfaceAttrib not implemented
+02-26 04:20:14.670 1716-1735/com.sty.ne.chatroom W/OpenGLRenderer: Failed to set EGL_SWAP_BEHAVIOR on surface 0xf3ee5ae0, error=EGL_SUCCESS
+02-26 04:20:45.847 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onOpen
+02-26 04:20:45.847 1716-1774/com.sty.ne.chatroom D/WebRTCManager: onWebSocketOpen()
+02-26 04:20:46.556 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglBase14Impl: SDK version: 22. isEGL14Supported: true
+02-26 04:20:46.604 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglBase14Impl: Using OpenGL ES version 2
+02-26 04:20:46.738 1716-1716/com.sty.ne.chatroom D/JavaWebSocket: joinRoom--> {"eventName":"__join","data":{"room":"666555"}}
+02-26 04:20:46.749 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_peers","data":{"connections":[],"you":"66ed898d-a3f2-48b1-b822-a39e923439ca"}}
+02-26 04:20:46.785 1716-1731/com.sty.ne.chatroom I/art: Background sticky concurrent mark sweep GC freed 7243(502KB) AllocSpace objects, 0(0B) LOS objects, 0% free, 3MB/3MB, paused 5.268ms total 32.104ms
+02-26 04:20:46.798 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleJoinRoom: 
+02-26 04:20:46.798 1716-1774/com.sty.ne.chatroom D/WebRTCManager: onJoinToRoom() myId: 66ed898d-a3f2-48b1-b822-a39e923439ca
+02-26 04:20:46.888 1716-1735/com.sty.ne.chatroom W/EGL_emulation: eglSurfaceAttrib not implemented
+02-26 04:20:46.888 1716-1735/com.sty.ne.chatroom W/OpenGLRenderer: Failed to set EGL_SWAP_BEHAVIOR on surface 0xe1134280, error=EGL_SUCCESS
+02-26 04:20:46.940 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: NativeLibrary: Loading native library: jingle_peerconnection_so
+02-26 04:20:46.940 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: NativeLibrary: Loading library: jingle_peerconnection_so
+02-26 04:20:46.940 1716-1781/com.sty.ne.chatroom W/linker: libjingle_peerconnection_so.so: unused DT entry: type 0x6ffffffe arg 0x1cdc
+02-26 04:20:46.940 1716-1781/com.sty.ne.chatroom W/linker: libjingle_peerconnection_so.so: unused DT entry: type 0x6fffffff arg 0x3
+02-26 04:20:46.972 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: PeerConnectionFactory: PeerConnectionFactory was initialized without an injected Loggable. Any existing Loggable will be deleted.
+02-26 04:20:47.103 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioManagerExternal: Sample rate is set to 44100 Hz
+02-26 04:20:47.103 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioManagerExternal: Sample rate is set to 44100 Hz
+02-26 04:20:47.103 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: JavaAudioDeviceModule: createAudioDeviceModule
+02-26 04:20:47.103 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: JavaAudioDeviceModule: HW NS will not be used.
+02-26 04:20:47.103 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: JavaAudioDeviceModule: HW AEC will not be used.
+02-26 04:20:47.107 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioEffectsExternal: ctor@[name=pool-1-thread-1, id=160]
+02-26 04:20:47.107 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: ctor@[name=pool-1-thread-1, id=160]
+02-26 04:20:47.118 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: ctor@[name=pool-1-thread-1, id=160]
+02-26 04:20:47.179 1716-1781/com.sty.ne.chatroom W/AudioCapabilities: Unsupported mime audio/x-ms-wma
+02-26 04:20:47.186 1716-1781/com.sty.ne.chatroom W/AudioCapabilities: Unsupported mime audio/vnd.rn-realaudio
+02-26 04:20:47.220 1716-1781/com.sty.ne.chatroom W/AudioCapabilities: Unsupported mime audio/mpeg-L2
+02-26 04:20:47.238 1716-1781/com.sty.ne.chatroom W/AudioCapabilities: Unsupported mime audio/ac3
+02-26 04:20:47.253 1716-1781/com.sty.ne.chatroom W/AudioCapabilities: Unsupported mime audio/x-ape
+02-26 04:20:47.254 1716-1781/com.sty.ne.chatroom W/AudioCapabilities: Unsupported mime audio/vnd.dts
+02-26 04:20:47.256 1716-1781/com.sty.ne.chatroom W/AudioCapabilities: Unsupported mime audio/x-pcm
+02-26 04:20:47.262 1716-1781/com.sty.ne.chatroom W/AudioCapabilities: Unsupported mime audio/ffmpeg
+02-26 04:20:47.265 1716-1781/com.sty.ne.chatroom W/VideoCapabilities: Unsupported mime video/mpeg2
+02-26 04:20:47.267 1716-1781/com.sty.ne.chatroom W/VideoCapabilities: Unsupported mime video/x-ms-wmv
+02-26 04:20:47.270 1716-1781/com.sty.ne.chatroom W/VideoCapabilities: Unsupported mime video/vnd.rn-realvideo
+02-26 04:20:47.272 1716-1781/com.sty.ne.chatroom W/VideoCapabilities: Unsupported mime video/vc1
+02-26 04:20:47.278 1716-1781/com.sty.ne.chatroom W/VideoCapabilities: Unsupported mime video/x-flv
+02-26 04:20:47.281 1716-1781/com.sty.ne.chatroom W/VideoCapabilities: Unsupported mime video/divx
+02-26 04:20:47.282 1716-1781/com.sty.ne.chatroom W/VideoCapabilities: Unsupported mime video/ffmpeg
+02-26 04:20:47.316 1716-1781/com.sty.ne.chatroom I/VideoCapabilities: Unsupported profile 4 for video/mp4v-es
+02-26 04:20:47.334 1716-1782/com.sty.ne.chatroom I/org.webrtc.Logging: PeerConnectionFactory: onNetworkThreadReady
+02-26 04:20:47.334 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: PeerConnectionFactory: onWorkerThreadReady
+02-26 04:20:47.335 1716-1784/com.sty.ne.chatroom I/org.webrtc.Logging: PeerConnectionFactory: onSignalingThreadReady
+02-26 04:20:47.338 1716-1781/com.sty.ne.chatroom I/CameraManagerGlobal: getCameraService: Reconnecting to camera service
+02-26 04:20:47.391 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Enumerator: Index: 0. Camera 0, Facing back, Orientation 90
+02-26 04:20:47.403 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Enumerator: Index: 1. Camera 1, Facing front, Orientation 90
+02-26 04:20:47.405 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Enumerator: getCameraIndex: Camera 0, Facing back, Orientation 90
+02-26 04:20:47.448 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Enumerator: getCameraIndex: Camera 1, Facing front, Orientation 90
+02-26 04:20:47.462 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Enumerator: Index: 0. Camera 0, Facing back, Orientation 90
+02-26 04:20:47.472 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Enumerator: Index: 1. Camera 1, Facing front, Orientation 90
+02-26 04:20:47.563 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: EglBase14Impl: Using OpenGL ES version 2
+02-26 04:20:47.572 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: startCapture: 320x240@10
+02-26 04:20:47.574 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Enumerator: getCameraIndex: Camera 1, Facing front, Orientation 90
+02-26 04:20:47.576 1716-1781/com.sty.ne.chatroom D/PeerConnectionManager: 为所有连接添加流
+02-26 04:20:47.579 1716-1716/com.sty.ne.chatroom W/ResourceType: No known package when getting name for resource number 0xffffffff
+02-26 04:20:47.581 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: Initializing EglRenderer
+02-26 04:20:47.583 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Session: Open camera 1
+02-26 04:20:47.587 1716-1789/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: EglBase.create shared context
+02-26 04:20:47.618 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Session: Available fps ranges: [[5.0:30.0]]
+02-26 04:20:47.619 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Session: Create new camera1 session on camera 1
+02-26 04:20:47.619 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Session: Start capturing
+02-26 04:20:47.624 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: Create session done. Switch state: IDLE
+02-26 04:20:47.625 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceTextureHelper: Setting listener to org.webrtc.-$$Lambda$Camera1Session$IaCl5v4xeWNI0BnOxdpBB-kXaIc@1709f3e4
+02-26 04:20:47.661 1716-1789/com.sty.ne.chatroom I/org.webrtc.Logging: EglBase14Impl: Using OpenGL ES version 2
+02-26 04:20:47.663 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: setMirrorHorizontally: true
+02-26 04:20:47.664 1716-1716/com.sty.ne.chatroom D/ChatRoomActivity: size: 1
+02-26 04:20:47.664 1716-1716/com.sty.ne.chatroom D/ChatRoomActivity: width: 384 height: 384 leftMargin: 0 topMargin: 192
+02-26 04:20:47.668 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: : onMeasure(). New size: 384x384
+02-26 04:20:47.668 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: : onMeasure(). New size: 384x384
+02-26 04:20:47.677 1716-1735/com.sty.ne.chatroom W/EGL_emulation: eglSurfaceAttrib not implemented
+02-26 04:20:47.677 1716-1735/com.sty.ne.chatroom W/OpenGLRenderer: Failed to set EGL_SWAP_BEHAVIOR on surface 0xe1134280, error=EGL_SUCCESS
+02-26 04:20:47.678 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: setLayoutAspectRatio: 1.0
+02-26 04:20:47.684 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceEglRenderer: : surfaceChanged: format: 4 size: 384x384
+02-26 04:20:47.818 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceEglRenderer: : Reporting first rendered frame.
+02-26 04:20:47.820 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceEglRenderer: : Reporting frame resolution changed to 320x240 with rotation 90
+02-26 04:20:47.834 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: : onMeasure(). New size: 384x384
+02-26 04:20:47.835 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: : onMeasure(). New size: 384x384
+02-26 04:20:47.835 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: setLayoutAspectRatio: 1.0
+
+手机加入房间：
+02-26 04:23:52.369 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: CameraStatistics: Camera fps: 13.
+02-26 04:23:54.150 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_new_peer","data":{"socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62"}}
+02-26 04:23:54.150 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteInRoom: 
+02-26 04:23:54.150 1716-1774/com.sty.ne.chatroom D/WebRTCManager: oonRemoteJoinToRoom() socketId: d6ef0b3e-4553-4fe3-bf73-bde40b142a62
+02-26 04:23:54.222 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onRenegotiationNeeded 
+02-26 04:23:54.374 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: CameraStatistics: Camera fps: 15.
+02-26 04:23:54.547 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_offer","data":{"sdp":{"type":"offer","sdp":"v=0\r\no=- 6252222836185365561 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE audio video\r\na=msid-semantic: WMS ARDAMS\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111 103 104 9 102 0 8 106 105 13 110 112 113 126\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:X0hd\r\na=ice-pwd:9CgOnlMbE32TVMMhNcUu2s/w\r\na=ice-options:trickle renomination\r\na=fingerprint:sha-256 69:B2:AC:6A:B8:20:00:81:FF:4D:CE:47:24:71:E7:72:52:31:D4:30:CA:5F:38:7D:87:94:1B:F6:B2:D6:FD:18\r\na=setup:actpass\r\na=mid:audio\r\na=extmap:1 urn:ietf:params:rtp-hdrext:ssrc-audio-level\r\na=extmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:3 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=sendrecv\r\na=rtcp-mux\r\na=rtpmap:111 opus/48000/2\r\na=rtcp-fb:111 transport-cc\r\na=fmtp:111 minptime=10;useinbandfec=1\r\na=rtpmap:103 ISAC/16000\r\na=rtpmap:104 ISAC/32000\r\na=rtpmap:9 G722/8000\r\na=rtpmap:102 ILBC/8000\r\na=rtpmap:0 PCMU/8000\r\na=rtpmap:8 PCMA/8000\r\na=rtpmap:106 CN/32000\r\na=rtpmap:105 CN/16000\r\na=rtpmap:13 CN/8000\r\na=rtpmap:110 telephone-event/48000\r\na=rtpmap:112 telephone-event/32000\r\na=rtpmap:113 telephone-event/16000\r\na=rtpmap:126 telephone-event/8000\r\na=ssrc:3019357765 cname:ES9MEI7+y4szlKSQ\r\na=ssrc:3019357765 msid:ARDAMS ARDAMSa0\r\na=ssrc:3019357765 mslabel:ARDAMS\r\na=ssrc:3019357765 label:ARDAMSa0\r\nm=video 9 UDP/TLS/RTP/SAVPF 96 97 98 99 100 101 127 123 125\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:X0hd\r\na=ice-pwd:9CgOnlMbE32TVMMhNcUu2s/w\r\na=ice-options:trickle renomination\r\na=fingerprint:sha-256 69:B2:AC:6A:B8:20:00:81:FF:4D:CE:47:24:71:E7:72:52:31:D4:30:CA:5F:38:7D:87:94:1B:F6:B2:D6:FD:18\r\na=setup:actpass\r\na=mid:video\r\na=extmap:14 urn:ietf:params:rtp-hdrext:toffset\r\na=extmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:13 urn:3gpp:video-orientation\r\na=extmap:3 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=extmap:5 http://www.webrtc.org/experiments/rtp-hdrext/playout-delay\r\na=extmap:6 http://www.webrtc.org/experiments/rtp-hdrext/video-content-type\r\na=extmap:7 http://www.webrtc.org/experiments/rtp-hdrext/video-timing\r\na=extmap:8 http://www.webrtc.org/experiments/rtp-hdrext/color-space\r\na=sendrecv\r\na=rtcp-mux\r\na=rtcp-rsize\r\na=rtpmap:96 VP8/90000\r\na=rtcp-fb:96 goog-remb\r\na=rtcp-fb:96 transport-cc\r\na=rtcp-fb:96 ccm fir\r\na=rtcp-fb:96 nack\r\na=rtcp-fb:96 nack pli\r\na=rtpmap:97 rtx/90000\r\na=fmtp:97 apt=96\r\na=rtpmap:98 VP9/90000\r\na=rtcp-fb:98 goog-remb\r\na=rtcp-fb:98 transport-cc\r\na=rtcp-fb:98 ccm fir\r\na=rtcp-fb:98 nack\r\na=rtcp-fb:98 nack pli\r\na=rtpmap:99 rtx/90000\r\na=fmtp:99 apt=98\r\na=rtpmap:100 H264/90000\r\na=rtcp-fb:100 goog-remb\r\na=rtcp-fb:100 transport-cc\r\na=rtcp-fb:100 ccm fir\r\na=rtcp-fb:100 nack\r\na=rtcp-fb:100 nack pli\r\na=fmtp:100 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f\r\na=rtpmap:101 rtx/90000\r\na=fmtp:101 apt=100\r\na=rtpmap:127 red/90000\r\na=rtpmap:123 rtx/90000\r\na=fmtp:123 apt=127\r\na=rtpmap:125 ulpfec/90000\r\na=ssrc-group:FID 3616318136 3068151537\r\na=ssrc:3616318136 cname:ES9MEI7+y4szlKSQ\r\na=ssrc:3616318136 msid:ARDAMS ARDAMSv0\r\na=ssrc:3616318136 mslabel:ARDAMS\r\na=ssrc:3616318136 label:ARDAMSv0\r\na=ssrc:3068151537 cname:ES9MEI7+y4szlKSQ\r\na=ssrc:3068151537 msid:ARDAMS ARDAMSv0\r\na=ssrc:3068151537 mslabel:ARDAMS\r\na=ssrc:3068151537 label:ARDAMSv0\r\n"},"socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62"}}
+02-26 04:23:54.547 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleOffer: 
+02-26 04:23:54.547 1716-1774/com.sty.ne.chatroom D/WebRTCManager: onReceiveOffer() socketId: d6ef0b3e-4553-4fe3-bf73-bde40b142a62 sdp: v=0
+    o=- 6252222836185365561 2 IN IP4 127.0.0.1
+    s=-
+    t=0 0
+    a=group:BUNDLE audio video
+    a=msid-semantic: WMS ARDAMS
+    m=audio 9 UDP/TLS/RTP/SAVPF 111 103 104 9 102 0 8 106 105 13 110 112 113 126
+    c=IN IP4 0.0.0.0
+    a=rtcp:9 IN IP4 0.0.0.0
+    a=ice-ufrag:X0hd
+    a=ice-pwd:9CgOnlMbE32TVMMhNcUu2s/w
+    a=ice-options:trickle renomination
+    a=fingerprint:sha-256 69:B2:AC:6A:B8:20:00:81:FF:4D:CE:47:24:71:E7:72:52:31:D4:30:CA:5F:38:7D:87:94:1B:F6:B2:D6:FD:18
+    a=setup:actpass
+    a=mid:audio
+    a=extmap:1 urn:ietf:params:rtp-hdrext:ssrc-audio-level
+    a=extmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time
+    a=extmap:3 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01
+    a=sendrecv
+    a=rtcp-mux
+    a=rtpmap:111 opus/48000/2
+    a=rtcp-fb:111 transport-cc
+    a=fmtp:111 minptime=10;useinbandfec=1
+    a=rtpmap:103 ISAC/16000
+    a=rtpmap:104 ISAC/32000
+    a=rtpmap:9 G722/8000
+    a=rtpmap:102 ILBC/8000
+    a=rtpmap:0 PCMU/8000
+    a=rtpmap:8 PCMA/8000
+    a=rtpmap:106 CN/32000
+    a=rtpmap:105 CN/16000
+    a=rtpmap:13 CN/8000
+    a=rtpmap:110 telephone-event/48000
+    a=rtpmap:112 telephone-event/32000
+    a=rtpmap:113 telephone-event/16000
+    a=rtpmap:126 telephone-event/8000
+    a=ssrc:3019357765 cname:ES9MEI7+y4szlKSQ
+    a=ssrc:3019357765 msid:ARDAMS ARDAMSa0
+    a=ssrc:3019357765 mslabel:ARDAMS
+    a=ssrc:3019357765 label:ARDAMSa0
+    m=video 9 UDP/TLS/RTP/SAVPF 96 97 98 99 100 101 127 123 125
+    c=IN IP4 0.0.0.0
+    a=rtcp:9 IN IP4 0.0.0.0
+    a=ice-ufrag:X0hd
+    a=ice-pwd:9CgOnlMbE32TVMMhNcUu2s/w
+    a=ice-options:trickle renomination
+    a=fingerprint:sha-256 69:B2:AC:6A:B8:20:00:81:FF:4D:CE:47:24:71:E7:72:52:31:D4:30:CA:5F:38:7D:87:94:1B:F6:B2:D6:FD:18
+    a=setup:actpass
+    a=mid:video
+    a=extmap:14 urn:ietf:params:rtp-hdrext:toffset
+    a=extmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time
+    a=extmap:13 urn:3gpp:video-orientation
+    a=extmap:3 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01
+    a=extmap:5 http://www.webrtc.org/experiments/rtp-hdrext/playout-delay
+    a=extmap:6 http://www.webrtc.org/experiments/rtp-hdrext/video-content-type
+    a=extmap:7 http://www.webrtc.org/experiments/rtp-hdrext/video-timing
+    a=extmap:8 http://www.webrtc.org/experiments/rtp-hdrext/color-space
+    a=sendrecv
+    a=rtcp-mux
+    a=rtcp-rsize
+    a=rtpmap:96 VP8/90000
+    a=rtcp-fb:96 goog-remb
+    a=rtcp-fb:96 transport-cc
+    a=rtcp-fb:96 ccm fir
+    a=rtcp-fb:96 nack
+    a=rtcp-fb:96 nack pli
+    a=rtpmap:97 rtx/90000
+    a=fmtp:97 apt=96
+    a=rtpmap:98 VP9/90000
+    a=rtcp-fb:98 goog-remb
+    a=rtcp-fb:98 transport-cc
+    a=rtcp-fb:98 ccm fir
+    a=rtcp-fb:98 nack
+    a=rtcp-fb:98 nack pli
+    a=rtpmap:99 rtx/90000
+    a=fmtp:99 apt=98
+    a=rtpmap:100 H264/90000
+    a=rtcp-fb:100 goog-remb
+    a=rtcp-fb:100 transport-cc
+    a=rtcp-fb:100 ccm fir
+    a=rtcp-fb:100 nack
+    a=rtcp-fb:100 nack pli
+    a=fmtp:100 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f
+    a=rtpmap:101 rtx/90000
+    a=fmtp:101 apt=100
+    a=rtpmap:127 red/90000
+    a=rtpmap:123 rtx/90000
+    a=fmtp:123 apt=127
+    a=rtpmap:125 ulpfec/90000
+    a=ssrc-group:FID 3616318136 3068151537
+    a=ssrc:3616318136 cname:ES9MEI7+y4szlKSQ
+    a=ssrc:3616318136 msid:ARDAMS ARDAMSv0
+    a=ssrc:3616318136 mslabel:ARDAMS
+    a=ssrc:3616318136 label:ARDAMSv0
+    a=ssrc:3068151537 cname:ES9MEI7+y4szlKSQ
+    a=ssrc:3068151537 msid:ARDAMS ARDAMSv0
+    a=ssrc:3068151537 mslabel:ARDAMS
+    a=ssrc:3068151537 label:ARDAMSv0
+02-26 04:23:54.548 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_ice_candidate","data":{"id":"audio","label":0,"sdpMLineIndex":0,"candidate":"candidate:4132807155 1 udp 2122260223 192.168.8.87 43619 typ host generation 0 ufrag X0hd network-id 3 network-cost 10","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62"}}
+02-26 04:23:54.548 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteCandidate: 
+02-26 04:23:54.548 1716-1774/com.sty.ne.chatroom D/WebRTCManager: onRemoteIceCandidate() socketId: d6ef0b3e-4553-4fe3-bf73-bde40b142a62
+02-26 04:23:54.548 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_ice_candidate","data":{"id":"audio","label":0,"sdpMLineIndex":0,"candidate":"candidate:559267639 1 udp 2122202367 ::1 42143 typ host generation 0 ufrag X0hd network-id 2","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62"}}
+02-26 04:23:54.548 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteCandidate: 
+02-26 04:23:54.548 1716-1774/com.sty.ne.chatroom D/WebRTCManager: onRemoteIceCandidate() socketId: d6ef0b3e-4553-4fe3-bf73-bde40b142a62
+02-26 04:23:54.548 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_ice_candidate","data":{"id":"audio","label":0,"sdpMLineIndex":0,"candidate":"candidate:1510613869 1 udp 2122129151 127.0.0.1 37023 typ host generation 0 ufrag X0hd network-id 1","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62"}}
+02-26 04:23:54.548 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteCandidate: 
+02-26 04:23:54.548 1716-1774/com.sty.ne.chatroom D/WebRTCManager: onRemoteIceCandidate() socketId: d6ef0b3e-4553-4fe3-bf73-bde40b142a62
+02-26 04:23:54.548 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_ice_candidate","data":{"id":"video","label":1,"sdpMLineIndex":1,"candidate":"candidate:4132807155 1 udp 2122260223 192.168.8.87 41970 typ host generation 0 ufrag X0hd network-id 3 network-cost 10","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62"}}
+02-26 04:23:54.548 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteCandidate: 
+02-26 04:23:54.548 1716-1774/com.sty.ne.chatroom D/WebRTCManager: onRemoteIceCandidate() socketId: d6ef0b3e-4553-4fe3-bf73-bde40b142a62
+02-26 04:23:54.548 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_ice_candidate","data":{"id":"video","label":1,"sdpMLineIndex":1,"candidate":"candidate:559267639 1 udp 2122202367 ::1 41257 typ host generation 0 ufrag X0hd network-id 2","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62"}}
+02-26 04:23:54.548 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteCandidate: 
+02-26 04:23:54.548 1716-1774/com.sty.ne.chatroom D/WebRTCManager: onRemoteIceCandidate() socketId: d6ef0b3e-4553-4fe3-bf73-bde40b142a62
+02-26 04:23:54.562 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_ice_candidate","data":{"id":"video","label":1,"sdpMLineIndex":1,"candidate":"candidate:1510613869 1 udp 2122129151 127.0.0.1 37819 typ host generation 0 ufrag X0hd network-id 1","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62"}}
+02-26 04:23:54.562 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteCandidate: 
+02-26 04:23:54.562 1716-1774/com.sty.ne.chatroom D/WebRTCManager: onRemoteIceCandidate() socketId: d6ef0b3e-4553-4fe3-bf73-bde40b142a62
+02-26 04:23:54.623 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_ice_candidate","data":{"id":"audio","label":0,"sdpMLineIndex":0,"candidate":"candidate:1876313031 1 tcp 1518222591 ::1 39342 typ host tcptype passive generation 0 ufrag X0hd network-id 2","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62"}}
+02-26 04:23:54.623 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteCandidate: 
+02-26 04:23:54.623 1716-1774/com.sty.ne.chatroom D/WebRTCManager: onRemoteIceCandidate() socketId: d6ef0b3e-4553-4fe3-bf73-bde40b142a62
+02-26 04:23:54.624 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onSignalingChange signalingState: HAVE_REMOTE_OFFER
+02-26 04:23:54.632 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: AndroidVideoDecoder: ctor name: OMX.ffmpeg.h264.decoder type: H264 color format: 19 context: org.webrtc.EglBase14Impl$Context@167d0813
+02-26 04:23:54.677 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_ice_candidate","data":{"id":"audio","label":0,"sdpMLineIndex":0,"candidate":"candidate:344579997 1 tcp 1518149375 127.0.0.1 44295 typ host tcptype passive generation 0 ufrag X0hd network-id 1","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62"}}
+02-26 04:23:54.677 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteCandidate: 
+02-26 04:23:54.677 1716-1774/com.sty.ne.chatroom D/WebRTCManager: onRemoteIceCandidate() socketId: d6ef0b3e-4553-4fe3-bf73-bde40b142a62
+02-26 04:23:54.677 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_ice_candidate","data":{"id":"video","label":1,"sdpMLineIndex":1,"candidate":"candidate:1876313031 1 tcp 1518222591 ::1 49342 typ host tcptype passive generation 0 ufrag X0hd network-id 2","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62"}}
+02-26 04:23:54.677 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteCandidate: 
+02-26 04:23:54.677 1716-1774/com.sty.ne.chatroom D/WebRTCManager: onRemoteIceCandidate() socketId: d6ef0b3e-4553-4fe3-bf73-bde40b142a62
+02-26 04:23:54.678 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_ice_candidate","data":{"id":"video","label":1,"sdpMLineIndex":1,"candidate":"candidate:344579997 1 tcp 1518149375 127.0.0.1 46115 typ host tcptype passive generation 0 ufrag X0hd network-id 1","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62"}}
+02-26 04:23:54.678 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteCandidate: 
+02-26 04:23:54.678 1716-1774/com.sty.ne.chatroom D/WebRTCManager: onRemoteIceCandidate() socketId: d6ef0b3e-4553-4fe3-bf73-bde40b142a62
+02-26 04:23:54.689 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onAddTrack rtpReceiver: org.webrtc.RtpReceiver@3d646a50 
+    mediaStreams: [[ARDAMS:A=1:V=0]]
+02-26 04:23:54.702 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onAddTrack rtpReceiver: org.webrtc.RtpReceiver@605d449 
+    mediaStreams: [[ARDAMS:A=1:V=1]]
+02-26 04:23:54.702 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onAddStream mediaStream: [ARDAMS:A=1:V=1]
+02-26 04:23:54.709 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onSetSuccess 
+02-26 04:23:54.710 1716-1716/com.sty.ne.chatroom W/ResourceType: No known package when getting name for resource number 0xffffffff
+02-26 04:23:54.712 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: Initializing EglRenderer
+02-26 04:23:54.712 1716-1731/com.sty.ne.chatroom I/art: Background sticky concurrent mark sweep GC freed 16361(675KB) AllocSpace objects, 0(0B) LOS objects, 12% free, 4MB/5MB, paused 27.140ms total 88.909ms
+02-26 04:23:54.713 1716-1844/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: EglBase.create shared context
+02-26 04:23:54.741 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onCreateSuccess sessionDescription: org.webrtc.SessionDescription@3626126f
+02-26 04:23:54.768 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onSignalingChange signalingState: STABLE
+02-26 04:23:54.817 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: initPlayout(sampleRate=44100, channels=1, bufferSizeFactor=1.0)
+02-26 04:23:54.817 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: byteBuffer.capacity: 882
+02-26 04:23:54.856 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: minBufferSizeInBytes: 6336
+02-26 04:23:54.856 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: createAudioTrackOnLollipopOrHigher
+02-26 04:23:54.856 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: nativeOutputSampleRate: 44100
+02-26 04:23:54.858 1716-1844/com.sty.ne.chatroom I/org.webrtc.Logging: EglBase14Impl: Using OpenGL ES version 2
+02-26 04:23:54.897 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: setMirrorHorizontally: true
+02-26 04:23:54.974 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: AudioTrack: session ID: 14, channels: 1, sample rate: 44100, max gain: 1.0
+02-26 04:23:54.974 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: VolumeLogger: start@[name=worker_thread - 1783, id=161]
+02-26 04:23:55.033 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: VolumeLogger: audio mode is: MODE_NORMAL
+02-26 04:23:55.045 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: startPlayout
+02-26 04:23:55.133 1716-1849/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: AudioTrackThread@[name=AudioTrackJavaThread, id=169]
+02-26 04:23:55.133 1716-1849/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: doAudioTrackStateCallback: 0
+02-26 04:23:55.142 1716-1716/com.sty.ne.chatroom D/ChatRoomActivity: size: 2
+02-26 04:23:55.142 1716-1716/com.sty.ne.chatroom D/ChatRoomActivity: width: 384 height: 384 leftMargin: 0 topMargin: 192
+02-26 04:23:55.142 1716-1716/com.sty.ne.chatroom D/ChatRoomActivity: width: 384 height: 384 leftMargin: 384 topMargin: 192
+02-26 04:23:55.188 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: : onMeasure(). New size: 384x384
+02-26 04:23:55.189 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: : onMeasure(). New size: 384x384
+02-26 04:23:55.190 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: : onMeasure(). New size: 384x384
+02-26 04:23:55.191 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: : onMeasure(). New size: 384x384
+02-26 04:23:55.250 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: setLayoutAspectRatio: 1.0
+02-26 04:23:55.250 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: setLayoutAspectRatio: 1.0
+02-26 04:23:55.543 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onIceConnectionChange iceConnectionState: CHECKING
+02-26 04:23:55.573 1716-1782/com.sty.ne.chatroom I/org.webrtc.Logging: NetworkMonitor: Start monitoring with native observer -288794400
+02-26 04:23:55.696 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceEglRenderer: : surfaceChanged: format: 4 size: 384x384
+02-26 04:23:55.944 1716-1782/com.sty.ne.chatroom W/org.webrtc.Logging: NetworkMonitorAutoDetect: Unable to obtain permission to request a cellular network.
+02-26 04:23:55.948 1716-1858/com.sty.ne.chatroom D/ConnectivityManager.CallbackHandler: CM callback handler got msg 524290
+02-26 04:23:56.024 1716-1858/com.sty.ne.chatroom I/org.webrtc.Logging: NetworkMonitorAutoDetect: Network becomes available: 100
+02-26 04:23:56.207 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onSetSuccess 
+02-26 04:23:56.207 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onSetSuccess: 最后一步测试
+02-26 04:23:56.208 1716-1784/com.sty.ne.chatroom D/JavaWebSocket: sendAnswer--> {"eventName":"__answer","data":{"socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62","sdp":{"type":"answer","sdp":"v=0\r\no=- 5100108734053644836 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE audio video\r\na=msid-semantic: WMS ARDAMS\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111 103 104 9 102 0 8 106 105 13 110 112 113 126\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:eF4x\r\na=ice-pwd:fRed/ARM3UYG4kN13IQp/ZwR\r\na=ice-options:trickle renomination\r\na=fingerprint:sha-256 CC:6B:28:87:68:2B:C9:50:80:A7:07:0B:19:71:EA:B7:EF:5A:71:3E:9A:18:A2:5D:58:99:7F:8F:49:A1:CB:FC\r\na=setup:active\r\na=mid:audio\r\na=extmap:1 urn:ietf:params:rtp-hdrext:ssrc-audio-level\r\na=extmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:3 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=sendrecv\r\na=rtcp-mux\r\na=rtpmap:111 opus/48000/2\r\na=rtcp-fb:111 transport-cc\r\na=fmtp:111 minptime=10;useinbandfec=1\r\na=rtpmap:103 ISAC/16000\r\na=rtpmap:104 ISAC/32000\r\na=rtpmap:9 G722/8000\r\na=rtpmap:102 ILBC/8000\r\na=rtpmap:0 PCMU/8000\r\na=rtpmap:8 PCMA/8000\r\na=rtpmap:106 CN/32000\r\na=rtpmap:105 CN/16000\r\na=rtpmap:13 CN/8000\r\na=rtpmap:110 telephone-event/48000\r\na=rtpmap:112 telephone-event/32000\r\na=rtpmap:113 telephone-event/16000\r\na=rtpmap:126 telephone-event/8000\r\na=ssrc:2380389870 cname:Wh5yHarFUplopO4B\r\na=ssrc:2380389870 msid:ARDAMS ARDAMSa0\r\na=ssrc:2380389870 mslabel:ARDAMS\r\na=ssrc:2380389870 label:ARDAMSa0\r\nm=video 9 UDP/TLS/RTP/SAVPF 96 97 98 99 127 123 125\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:eF4x\r\na=ice-pwd:fRed/ARM3UYG4kN13IQp/ZwR\r\na=ice-options:trickle renomination\r\na=fingerprint:sha-256 CC:6B:28:87:68:2B:C9:50:80:A7:07:0B:19:71:EA:B7:EF:5A:71:3E:9A:18:A2:5D:58:99:7F:8F:49:A1:CB:FC\r\na=setup:active\r\na=mid:video\r\na=extmap:14 urn:ietf:params:rtp-hdrext:toffset\r\na=extmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:13 urn:3gpp:video-orientation\r\na=extmap:3 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=extmap:5 http://www.webrtc.org/experiments/rtp-hdrext/playout-delay\r\na=extmap:6 http://www.webrtc.org/experiments/rtp-hdrext/video-content-type\r\na=extmap:7 http://www.webrtc.org/experiments/rtp-hdrext/video-timing\r\na=extmap:8 http://www.webrtc.org/experiments/rtp-hdrext/color-space\r\na=sendrecv\r\na=rtcp-mux\r\na=rtcp-rsize\r\na=rtpmap:96 VP8/90000\r\na=rtcp-fb:96 goog-remb\r\na=rtcp-fb:96 transport-cc\r\na=rtcp-fb:96 ccm fir\r\na=rtcp-fb:96 nack\r\na=rtcp-fb:96 nack pli\r\na=rtpmap:97 rtx/90000\r\na=fmtp:97 apt=96\r\na=rtpmap:98 VP9/90000\r\na=rtcp-fb:98 goog-remb\r\na=rtcp-fb:98 transport-cc\r\na=rtcp-fb:98 ccm fir\r\na=rtcp-fb:98 nack\r\na=rtcp-fb:98 nack pli\r\na=rtpmap:99 rtx/90000\r\na=fmtp:99 apt=98\r\na=rtpmap:127 red/90000\r\na=rtpmap:123 rtx/90000\r\na=fmtp:123 apt=127\r\na=rtpmap:125 ulpfec/90000\r\na=ssrc-group:FID 1521686357 327110533\r\na=ssrc:1521686357 cname:Wh5yHarFUplopO4B\r\na=ssrc:1521686357 msid:ARDAMS ARDAMSv0\r\na=ssrc:1521686357 mslabel:ARDAMS\r\na=ssrc:1521686357 label:ARDAMSv0\r\na=ssrc:327110533 cname:Wh5yHarFUplopO4B\r\na=ssrc:327110533 msid:ARDAMS ARDAMSv0\r\na=ssrc:327110533 mslabel:ARDAMS\r\na=ssrc:327110533 label:ARDAMSv0\r\n"}}}
+02-26 04:23:56.221 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onIceGatheringChange iceGatheringState: GATHERING
+02-26 04:23:56.263 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: audio:0:candidate:2263450517 1 udp 2122194687 10.0.3.15 60983 typ host generation 0 ufrag eF4x network-id 2 network-cost 10::UNKNOWN
+02-26 04:23:56.280 1716-1784/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"audio","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62","candidate":"candidate:2263450517 1 udp 2122194687 10.0.3.15 60983 typ host generation 0 ufrag eF4x network-id 2 network-cost 10","label":0}}
+02-26 04:23:56.321 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: audio:0:candidate:559267639 1 udp 2122136831 ::1 44600 typ host generation 0 ufrag eF4x network-id 4::UNKNOWN
+02-26 04:23:56.322 1716-1784/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"audio","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62","candidate":"candidate:559267639 1 udp 2122136831 ::1 44600 typ host generation 0 ufrag eF4x network-id 4","label":0}}
+02-26 04:23:56.322 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: audio:0:candidate:1510613869 1 udp 2122063615 127.0.0.1 41056 typ host generation 0 ufrag eF4x network-id 3::UNKNOWN
+02-26 04:23:56.322 1716-1784/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"audio","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62","candidate":"candidate:1510613869 1 udp 2122063615 127.0.0.1 41056 typ host generation 0 ufrag eF4x network-id 3","label":0}}
+02-26 04:23:56.340 1716-1789/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: Duration: 4115 ms. Frames received: 41. Dropped: 0. Rendered: 41. Render fps: 10.0. Average render time: 34104 us. Average swapBuffer time: 17334 us.
+02-26 04:23:56.385 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: audio:0:candidate:3932785465 1 tcp 1518280447 192.168.57.101 9 typ host tcptype active generation 0 ufrag eF4x network-id 1::UNKNOWN
+02-26 04:23:56.385 1716-1784/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"audio","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62","candidate":"candidate:3932785465 1 tcp 1518280447 192.168.57.101 9 typ host tcptype active generation 0 ufrag eF4x network-id 1","label":0}}
+02-26 04:23:56.408 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: CameraStatistics: Camera fps: 6.
+02-26 04:23:56.460 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: audio:0:candidate:1876313031 1 tcp 1518157055 ::1 55165 typ host tcptype passive generation 0 ufrag eF4x network-id 4::UNKNOWN
+02-26 04:23:56.460 1716-1784/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"audio","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62","candidate":"candidate:1876313031 1 tcp 1518157055 ::1 55165 typ host tcptype passive generation 0 ufrag eF4x network-id 4","label":0}}
+02-26 04:23:56.462 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: audio:0:candidate:344579997 1 tcp 1518083839 127.0.0.1 60696 typ host tcptype passive generation 0 ufrag eF4x network-id 3::UNKNOWN
+02-26 04:23:56.462 1716-1784/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"audio","socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62","candidate":"candidate:344579997 1 tcp 1518083839 127.0.0.1 60696 typ host tcptype passive generation 0 ufrag eF4x network-id 3","label":0}}
+02-26 04:23:56.648 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onIceGatheringChange iceGatheringState: COMPLETE
+02-26 04:23:56.833 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onIceConnectionChange iceConnectionState: CONNECTED
+02-26 04:23:56.861 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: initRecording(sampleRate=44100, channels=1)
+02-26 04:23:56.861 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: byteBuffer.capacity: 882
+02-26 04:23:56.861 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: AudioRecord.getMinBufferSize: 4096
+02-26 04:23:56.861 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: bufferSizeInBytes: 8192
+02-26 04:23:56.861 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: createAudioRecordOnLowerThanM
+02-26 04:23:56.888 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioEffectsExternal: enable(audioSession=15)
+02-26 04:23:56.888 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: AudioRecord: session ID: 15, channels: 1, sample rate: 44100
+02-26 04:23:56.888 1716-1783/com.sty.ne.chatroom W/org.webrtc.Logging: WebRtcAudioRecordExternal: AudioManager#getActiveRecordingConfigurations() requires N or higher
+02-26 04:23:56.903 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: startRecording
+02-26 04:23:56.939 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: scheduleLogRecordingConfigurationsTask
+02-26 04:23:56.961 1716-1862/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: AudioRecordThread@[name=AudioRecordJavaThread, id=173]
+02-26 04:23:56.961 1716-1862/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: doAudioRecordStateCallback: START
+02-26 04:23:56.961 1716-1854/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceEglRenderer: : Reporting first rendered frame.
+02-26 04:23:56.961 1716-1854/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceEglRenderer: : Reporting frame resolution changed to 320x240 with rotation 270
+02-26 04:23:56.993 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: : onMeasure(). New size: 384x384
+02-26 04:23:56.993 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: : onMeasure(). New size: 384x384
+02-26 04:23:56.993 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: setLayoutAspectRatio: 1.0
+02-26 04:23:58.515 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: CameraStatistics: Camera fps: 2.
+02-26 04:24:00.029 1716-1787/com.sty.ne.chatroom W/art: Long monitor contention event with owner method=void org.webrtc.EglBase14Impl.swapBuffers() from EglBase14Impl.java:215 waiters=0 for 102ms
+02-26 04:24:00.353 1716-1789/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: Duration: 4013 ms. Frames received: 8. Dropped: 0. Rendered: 8. Render fps: 2.0. Average render time: 154265 us. Average swapBuffer time: 75124 us.
+
+手机退出房间：
+02-26 04:25:12.604 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: CameraStatistics: Camera fps: 1.
+02-26 04:25:13.981 1716-1789/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: Duration: 4005 ms. Frames received: 4. Dropped: 0. Rendered: 4. Render fps: 1.0. Average render time: 263351 us. Average swapBuffer time: 193250 us.
+02-26 04:25:14.592 1716-1844/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: Duration: 49649 ms. Frames received: 743. Dropped: 618. Rendered: 126. Render fps: 2.5. Average render time: 393892 us. Average swapBuffer time: 238041 us.
+02-26 04:25:14.927 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onIceConnectionChange iceConnectionState: DISCONNECTED
+02-26 04:25:14.955 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_remove_peer","data":{"socketId":"d6ef0b3e-4553-4fe3-bf73-bde40b142a62"}}
+02-26 04:25:14.955 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteOutRoom: 
+02-26 04:25:14.955 1716-1774/com.sty.ne.chatroom D/WebRTCManager: onRemoteOutRoom() socketId: d6ef0b3e-4553-4fe3-bf73-bde40b142a62
+02-26 04:25:14.967 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: CameraStatistics: Camera fps: 1.
+02-26 04:25:15.001 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onIceConnectionChange iceConnectionState: CLOSED
+02-26 04:25:15.022 1716-1784/com.sty.ne.chatroom D/PeerConnectionManager: onSignalingChange signalingState: CLOSED
+02-26 04:25:15.036 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: stopRecording
+02-26 04:25:15.039 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: stopThread
+02-26 04:25:15.114 1716-1862/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: doAudioRecordStateCallback: STOP
+02-26 04:25:15.124 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioEffectsExternal: release
+02-26 04:25:15.124 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: releaseAudioResources
+02-26 04:25:15.294 1716-1789/com.sty.ne.chatroom W/art: Long monitor contention event with owner method=void org.webrtc.EglBase14Impl.swapBuffers() from EglBase14Impl.java:215 waiters=0 for 124ms
+02-26 04:25:15.613 1716-1852/com.sty.ne.chatroom W/art: Native thread exiting without having called DetachCurrentThread (maybe it's going to use a pthread_key_create destructor?): Thread[37,tid=1852,Native,Thread*=0xeec45c00,peer=0x12e7f0a0,"EncoderQueue - 1852"]
+02-26 04:25:15.668 1716-1854/com.sty.ne.chatroom W/art: Native thread exiting without having called DetachCurrentThread (maybe it's going to use a pthread_key_create destructor?): Thread[41,tid=1854,Native,Thread*=0xeec48c00,peer=0x12f500a0,"IncomingVideoSt - 1854"]
+02-26 04:25:15.678 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: VolumeLogger: stop@[name=worker_thread - 1783, id=161]
+02-26 04:25:15.678 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: stopPlayout
+02-26 04:25:15.678 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: stopThread
+02-26 04:25:15.678 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: Stopping the AudioTrackThread...
+02-26 04:25:15.828 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: AudioTrackThread has now been stopped.
+02-26 04:25:15.828 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: Calling AudioTrack.stop...
+02-26 04:25:15.828 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: AudioTrack.stop is done.
+02-26 04:25:15.828 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: doAudioTrackStateCallback: 1
+02-26 04:25:15.828 1716-1783/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: releaseAudioResources
+02-26 04:25:15.951 1716-1782/com.sty.ne.chatroom I/org.webrtc.Logging: NetworkMonitor: Stop monitoring with native observer -288794400
+02-26 04:25:15.952 1716-1782/com.sty.ne.chatroom I/org.webrtc.Logging: NetworkMonitorAutoDetect: Unregister network callback
+    
+    --------- beginning of system
+02-26 04:25:16.035 1716-1858/com.sty.ne.chatroom D/ConnectivityManager.CallbackHandler: CM callback handler got msg 524296
+02-26 04:25:16.073 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: Releasing.
+02-26 04:25:16.114 1716-1844/com.sty.ne.chatroom I/org.webrtc.Logging: GlShader: Deleting shader.
+02-26 04:25:16.114 1716-1844/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: eglBase detach and release.
+02-26 04:25:16.240 1716-1844/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: Quitting render thread.
+02-26 04:25:16.244 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: Releasing done.
+02-26 04:25:16.436 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: : onMeasure(). New size: 384x384
+02-26 04:25:16.436 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: : onMeasure(). New size: 384x384
+02-26 04:25:16.437 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: setLayoutAspectRatio: 1.0
+02-26 04:25:16.967 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: CameraStatistics: Camera fps: 8.
+02-26 04:25:17.981 1716-1789/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: Duration: 4000 ms. Frames received: 33. Dropped: 0. Rendered: 33. Render fps: 8.2. Average render time: 31519 us. Average swapBuffer time: 23249 us.
+
+模拟器退出房间：
+02-26 04:26:22.144 1716-1789/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: Duration: 4006 ms. Frames received: 54. Dropped: 0. Rendered: 55. Render fps: 13.7. Average render time: 24847 us. Average swapBuffer time: 12804 us.
+02-26 04:26:23.174 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: CameraStatistics: Camera fps: 16.
+02-26 04:26:24.085 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: Releasing.
+02-26 04:26:24.086 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: Stop capture
+02-26 04:26:24.086 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: Stop capture: Nulling session
+02-26 04:26:24.086 1716-1789/com.sty.ne.chatroom I/org.webrtc.Logging: GlShader: Deleting shader.
+02-26 04:26:24.086 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: Stop capture done
+02-26 04:26:24.086 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: dispose
+02-26 04:26:24.086 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: Stop capture
+02-26 04:26:24.086 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: Stop capture: No session open
+02-26 04:26:24.086 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: Stop capture done
+02-26 04:26:24.086 1716-1781/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceTextureHelper: dispose()
+02-26 04:26:24.086 1716-1789/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: eglBase detach and release.
+02-26 04:26:24.090 1716-1789/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: Quitting render thread.
+02-26 04:26:24.095 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: Releasing done.
+02-26 04:26:24.129 1716-1787/com.sty.ne.chatroom W/org.webrtc.Logging: CameraCapturer: onFrameCaptured from another session.
+02-26 04:26:24.133 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Session: Stop camera1 session on camera 1
+02-26 04:26:24.133 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Session: Stop internal
+02-26 04:26:24.133 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceTextureHelper: stopListening()
+02-26 04:26:24.170 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Session: Stop done
+02-26 04:26:24.170 1716-1787/com.sty.ne.chatroom I/org.webrtc.Logging: GlShader: Deleting shader.
+02-26 04:26:24.172 1716-1784/com.sty.ne.chatroom W/art: Native thread exiting without having called DetachCurrentThread (maybe it's going to use a pthread_key_create destructor?): Thread[30,tid=1784,Native,Thread*=0xeec44800,peer=0x12e6d0a0,"signaling_threa - 1784"]
+02-26 04:26:24.173 1716-1783/com.sty.ne.chatroom W/art: Native thread exiting without having called DetachCurrentThread (maybe it's going to use a pthread_key_create destructor?): Thread[28,tid=1783,Native,Thread*=0xf3f33800,peer=0x12e63340,"worker_thread - 1783"]
+02-26 04:26:24.178 1716-1782/com.sty.ne.chatroom W/art: Native thread exiting without having called DetachCurrentThread (maybe it's going to use a pthread_key_create destructor?): Thread[29,tid=1782,Native,Thread*=0xeec43800,peer=0x12e67100,"network_thread - 1782"]
+02-26 04:26:24.190 1716-1774/com.sty.ne.chatroom D/JavaWebSocket: onClose code: 1000, reason: , remote: false
+02-26 04:26:24.190 1716-1774/com.sty.ne.chatroom D/WebRTCManager: onWebSocketOpenFailed(): 
+02-26 04:26:24.561 1716-1735/com.sty.ne.chatroom W/EGL_emulation: eglSurfaceAttrib not implemented
+02-26 04:26:24.561 1716-1735/com.sty.ne.chatroom W/OpenGLRenderer: Failed to set EGL_SWAP_BEHAVIOR on surface 0xdcd1e280, error=EGL_SUCCESS
+02-26 04:26:25.458 1716-1716/com.sty.ne.chatroom D/LeakCanary: Watching instance of leakcanary.internal.ViewModelClearedWatcher (leakcanary.internal.ViewModelClearedWatcher received ViewModel#onCleared() callback) with key add7e710-cc39-474a-bcb1-20773e9c2140
+02-26 04:26:25.461 1716-1716/com.sty.ne.chatroom D/LeakCanary: Watching instance of androidx.fragment.app.FragmentManagerViewModel (androidx.fragment.app.FragmentManagerViewModel received ViewModel#onCleared() callback) with key a308cd8a-1f04-4116-bcba-7923f3469b0f
+02-26 04:26:25.466 1716-1716/com.sty.ne.chatroom D/LeakCanary: Watching instance of com.sty.ne.chatroom.ui.ChatRoomActivity (com.sty.ne.chatroom.ui.ChatRoomActivity received Activity#onDestroy() callback) with key e2be15c9-cfbb-4ea1-9e0e-676e0c6fc9b2
+02-26 04:26:25.473 1716-1716/com.sty.ne.chatroom D/LeakCanary: Watching instance of android.widget.RelativeLayout (com.sty.ne.chatroom.ui.ChatRoomFragment received Fragment#onDestroyView() callback (references to its views should be cleared to prevent leaks)) with key 7f05fd2a-9328-4128-a039-486a22e4eff9
+02-26 04:26:25.474 1716-1716/com.sty.ne.chatroom D/LeakCanary: Watching instance of androidx.loader.app.LoaderManagerImpl$LoaderViewModel (androidx.loader.app.LoaderManagerImpl$LoaderViewModel received ViewModel#onCleared() callback) with key 275f1ac0-d153-4738-8a6c-8b8f90201486
+02-26 04:26:25.474 1716-1716/com.sty.ne.chatroom D/LeakCanary: Watching instance of leakcanary.internal.ViewModelClearedWatcher (leakcanary.internal.ViewModelClearedWatcher received ViewModel#onCleared() callback) with key 066048fe-4b6f-402a-815f-4520e60781cd
+02-26 04:26:25.474 1716-1716/com.sty.ne.chatroom D/LeakCanary: Watching instance of com.sty.ne.chatroom.ui.ChatRoomFragment (com.sty.ne.chatroom.ui.ChatRoomFragment received Fragment#onDestroy() callback) with key ee73f9c8-32ba-4916-b390-54c88c2357de
+
+手机1对1加入房间：
+02-26 04:27:38.865 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_remote_rendersetMirrorHorizontally: true
+02-26 04:27:38.866 1716-1716/com.sty.ne.chatroom D/JavaWebSocket: joinRoom--> {"eventName":"__join","data":{"room":"666555:"}}
+02-26 04:27:38.877 1716-1899/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_peers","data":{"connections":["94b742b9-731e-44c6-b004-356005cf6414"],"you":"fe2a7cd9-2280-4bdf-9aa0-0d990b792f82"}}
+02-26 04:27:38.878 1716-1899/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleJoinRoom: 
+02-26 04:27:38.878 1716-1899/com.sty.ne.chatroom D/WebRTCManager: onJoinToRoom() myId: fe2a7cd9-2280-4bdf-9aa0-0d990b792f82
+02-26 04:27:38.913 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: svr_remote_render: onMeasure(). New size: 768x1038
+02-26 04:27:38.913 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: svr_local_render: onMeasure(). New size: 240x998
+02-26 04:27:38.913 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: svr_remote_render: onMeasure(). New size: 768x1038
+02-26 04:27:38.913 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: svr_local_render: onMeasure(). New size: 240x360
+02-26 04:27:38.943 1716-1735/com.sty.ne.chatroom W/EGL_emulation: eglSurfaceAttrib not implemented
+02-26 04:27:38.943 1716-1735/com.sty.ne.chatroom W/OpenGLRenderer: Failed to set EGL_SWAP_BEHAVIOR on surface 0xdcd1e340, error=EGL_SUCCESS
+02-26 04:27:38.964 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: svr_remote_render: onMeasure(). New size: 768x1134
+02-26 04:27:38.964 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: svr_local_render: onMeasure(). New size: 240x1094
+02-26 04:27:38.964 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: svr_remote_render: onMeasure(). New size: 768x1134
+02-26 04:27:38.964 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: svr_local_render: onMeasure(). New size: 240x360
+02-26 04:27:38.964 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_local_rendersetLayoutAspectRatio: 0.6666667
+02-26 04:27:38.964 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_remote_rendersetLayoutAspectRatio: 0.67724866
+02-26 04:27:39.088 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceEglRenderer: svr_local_render: surfaceChanged: format: 4 size: 240x360
+02-26 04:27:39.199 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceEglRenderer: svr_remote_render: surfaceChanged: format: 4 size: 768x1134
+02-26 04:27:39.254 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: NativeLibrary: Native library has already been loaded.
+02-26 04:27:39.254 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: PeerConnectionFactory: PeerConnectionFactory was initialized without an injected Loggable. Any existing Loggable will be deleted.
+02-26 04:27:39.254 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioManagerExternal: Sample rate is set to 44100 Hz
+02-26 04:27:39.256 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioManagerExternal: Sample rate is set to 44100 Hz
+02-26 04:27:39.256 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: JavaAudioDeviceModule: createAudioDeviceModule
+02-26 04:27:39.256 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: JavaAudioDeviceModule: HW NS will not be used.
+02-26 04:27:39.256 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: JavaAudioDeviceModule: HW AEC will not be used.
+02-26 04:27:39.256 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioEffectsExternal: ctor@[name=pool-2-thread-1, id=180]
+02-26 04:27:39.256 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: ctor@[name=pool-2-thread-1, id=180]
+02-26 04:27:39.256 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: ctor@[name=pool-2-thread-1, id=180]
+02-26 04:27:39.268 1716-1910/com.sty.ne.chatroom I/org.webrtc.Logging: PeerConnectionFactory: onNetworkThreadReady
+02-26 04:27:39.276 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: PeerConnectionFactory: onWorkerThreadReady
+02-26 04:27:39.276 1716-1912/com.sty.ne.chatroom I/org.webrtc.Logging: PeerConnectionFactory: onSignalingThreadReady
+02-26 04:27:39.300 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Enumerator: Index: 0. Camera 0, Facing back, Orientation 90
+02-26 04:27:39.306 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Enumerator: Index: 1. Camera 1, Facing front, Orientation 90
+02-26 04:27:39.306 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Enumerator: getCameraIndex: Camera 0, Facing back, Orientation 90
+02-26 04:27:39.315 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Enumerator: getCameraIndex: Camera 1, Facing front, Orientation 90
+02-26 04:27:39.332 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Enumerator: Index: 0. Camera 0, Facing back, Orientation 90
+02-26 04:27:39.340 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Enumerator: Index: 1. Camera 1, Facing front, Orientation 90
+02-26 04:27:39.468 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: svr_remote_render: onMeasure(). New size: 768x1134
+02-26 04:27:39.468 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: svr_local_render: onMeasure(). New size: 240x1094
+02-26 04:27:39.468 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: svr_remote_render: onMeasure(). New size: 768x1134
+02-26 04:27:39.468 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: svr_local_render: onMeasure(). New size: 240x360
+02-26 04:27:39.468 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_local_rendersetLayoutAspectRatio: 0.6666667
+02-26 04:27:39.468 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_remote_rendersetLayoutAspectRatio: 0.67724866
+02-26 04:27:39.514 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: EglBase14Impl: Using OpenGL ES version 2
+02-26 04:27:39.534 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: startCapture: 320x240@10
+02-26 04:27:39.535 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Enumerator: getCameraIndex: Camera 1, Facing front, Orientation 90
+02-26 04:27:39.554 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Session: Open camera 1
+02-26 04:27:39.559 1716-1909/com.sty.ne.chatroom D/PeerConnectionManager: 为所有连接添加流
+02-26 04:27:39.561 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onRenegotiationNeeded 
+02-26 04:27:39.565 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onCreateSuccess sessionDescription: org.webrtc.SessionDescription@3bc12d70
+02-26 04:27:39.570 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onSignalingChange signalingState: HAVE_LOCAL_OFFER
+02-26 04:27:39.585 1716-1910/com.sty.ne.chatroom I/org.webrtc.Logging: NetworkMonitor: Start monitoring with native observer -288791840
+02-26 04:27:39.588 1716-1910/com.sty.ne.chatroom W/org.webrtc.Logging: NetworkMonitorAutoDetect: Unable to obtain permission to request a cellular network.
+02-26 04:27:39.596 1716-1858/com.sty.ne.chatroom D/ConnectivityManager.CallbackHandler: CM callback handler got msg 524290
+02-26 04:27:39.596 1716-1858/com.sty.ne.chatroom I/org.webrtc.Logging: NetworkMonitorAutoDetect: Network becomes available: 100
+02-26 04:27:39.601 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onSetSuccess 
+02-26 04:27:39.601 1716-1912/com.sty.ne.chatroom D/JavaWebSocket: sendOffer -> {"eventName":"__offer","data":{"socketId":"94b742b9-731e-44c6-b004-356005cf6414","sdp":{"type":"offer","sdp":"v=0\r\no=- 9105143014115089042 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE audio video\r\na=msid-semantic: WMS ARDAMS\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111 103 104 9 102 0 8 106 105 13 110 112 113 126\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:Rq3X\r\na=ice-pwd:n2UtQBMGZPCYHsVRVVSRun2G\r\na=ice-options:trickle renomination\r\na=fingerprint:sha-256 E7:C8:25:D2:13:F6:C5:0A:2B:8C:78:40:80:74:BB:B2:66:B0:6C:F8:0E:2C:BF:6E:5D:BC:AF:E9:EE:AF:CB:12\r\na=setup:actpass\r\na=mid:audio\r\na=extmap:1 urn:ietf:params:rtp-hdrext:ssrc-audio-level\r\na=extmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:3 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=sendrecv\r\na=rtcp-mux\r\na=rtpmap:111 opus/48000/2\r\na=rtcp-fb:111 transport-cc\r\na=fmtp:111 minptime=10;useinbandfec=1\r\na=rtpmap:103 ISAC/16000\r\na=rtpmap:104 ISAC/32000\r\na=rtpmap:9 G722/8000\r\na=rtpmap:102 ILBC/8000\r\na=rtpmap:0 PCMU/8000\r\na=rtpmap:8 PCMA/8000\r\na=rtpmap:106 CN/32000\r\na=rtpmap:105 CN/16000\r\na=rtpmap:13 CN/8000\r\na=rtpmap:110 telephone-event/48000\r\na=rtpmap:112 telephone-event/32000\r\na=rtpmap:113 telephone-event/16000\r\na=rtpmap:126 telephone-event/8000\r\na=ssrc:619882300 cname:aQHo8LqGGUmVDf8N\r\na=ssrc:619882300 msid:ARDAMS ARDAMSa0\r\na=ssrc:619882300 mslabel:ARDAMS\r\na=ssrc:619882300 label:ARDAMSa0\r\nm=video 9 UDP/TLS/RTP/SAVPF 96 97 98 99 100 101 127\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:Rq3X\r\na=ice-pwd:n2UtQBMGZPCYHsVRVVSRun2G\r\na=ice-options:trickle renomination\r\na=fingerprint:sha-256 E7:C8:25:D2:13:F6:C5:0A:2B:8C:78:40:80:74:BB:B2:66:B0:6C:F8:0E:2C:BF:6E:5D:BC:AF:E9:EE:AF:CB:12\r\na=setup:actpass\r\na=mid:video\r\na=extmap:14 urn:ietf:params:rtp-hdrext:toffset\r\na=extmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:13 urn:3gpp:video-orientation\r\na=extmap:3 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=extmap:5 http://www.webrtc.org/experiments/rtp-hdrext/playout-delay\r\na=extmap:6 http://www.webrtc.org/experiments/rtp-hdrext/video-content-type\r\na=extmap:7 http://www.webrtc.org/experiments/rtp-hdrext/video-timing\r\na=extmap:8 http://www.webrtc.org/experiments/rtp-hdrext/color-space\r\na=sendrecv\r\na=rtcp-mux\r\na=rtcp-rsize\r\na=rtpmap:96 VP8/90000\r\na=rtcp-fb:96 goog-remb\r\na=rtcp-fb:96 transport-cc\r\na=rtcp-fb:96 ccm fir\r\na=rtcp-fb:96 nack\r\na=rtcp-fb:96 nack pli\r\na=rtpmap:97 rtx/90000\r\na=fmtp:97 apt=96\r\na=rtpmap:98 VP9/90000\r\na=rtcp-fb:98 goog-remb\r\na=rtcp-fb:98 transport-cc\r\na=rtcp-fb:98 ccm fir\r\na=rtcp-fb:98 nack\r\na=rtcp-fb:98 nack pli\r\na=rtpmap:99 rtx/90000\r\na=fmtp:99 apt=98\r\na=rtpmap:100 red/90000\r\na=rtpmap:101 rtx/90000\r\na=fmtp:101 apt=100\r\na=rtpmap:127 ulpfec/90000\r\na=ssrc-group:FID 2669043619 2706208800\r\na=ssrc:2669043619 cname:aQHo8LqGGUmVDf8N\r\na=ssrc:2669043619 msid:ARDAMS ARDAMSv0\r\na=ssrc:2669043619 mslabel:ARDAMS\r\na=ssrc:2669043619 label:ARDAMSv0\r\na=ssrc:2706208800 cname:aQHo8LqGGUmVDf8N\r\na=ssrc:2706208800 msid:ARDAMS ARDAMSv0\r\na=ssrc:2706208800 mslabel:ARDAMS\r\na=ssrc:2706208800 label:ARDAMSv0\r\n"}}}
+02-26 04:27:39.602 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onIceGatheringChange iceGatheringState: GATHERING
+02-26 04:27:39.619 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: audio:0:candidate:2263450517 1 udp 2122194687 10.0.3.15 45974 typ host generation 0 ufrag Rq3X network-id 2 network-cost 10::UNKNOWN
+02-26 04:27:39.620 1716-1912/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"audio","socketId":"94b742b9-731e-44c6-b004-356005cf6414","candidate":"candidate:2263450517 1 udp 2122194687 10.0.3.15 45974 typ host generation 0 ufrag Rq3X network-id 2 network-cost 10","label":0}}
+02-26 04:27:39.620 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: audio:0:candidate:559267639 1 udp 2122136831 ::1 35479 typ host generation 0 ufrag Rq3X network-id 4::UNKNOWN
+02-26 04:27:39.622 1716-1912/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"audio","socketId":"94b742b9-731e-44c6-b004-356005cf6414","candidate":"candidate:559267639 1 udp 2122136831 ::1 35479 typ host generation 0 ufrag Rq3X network-id 4","label":0}}
+02-26 04:27:39.628 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: audio:0:candidate:1510613869 1 udp 2122063615 127.0.0.1 39868 typ host generation 0 ufrag Rq3X network-id 3::UNKNOWN
+02-26 04:27:39.628 1716-1912/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"audio","socketId":"94b742b9-731e-44c6-b004-356005cf6414","candidate":"candidate:1510613869 1 udp 2122063615 127.0.0.1 39868 typ host generation 0 ufrag Rq3X network-id 3","label":0}}
+02-26 04:27:39.628 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: video:1:candidate:2263450517 1 udp 2122194687 10.0.3.15 58444 typ host generation 0 ufrag Rq3X network-id 2 network-cost 10::UNKNOWN
+02-26 04:27:39.628 1716-1912/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"video","socketId":"94b742b9-731e-44c6-b004-356005cf6414","candidate":"candidate:2263450517 1 udp 2122194687 10.0.3.15 58444 typ host generation 0 ufrag Rq3X network-id 2 network-cost 10","label":1}}
+02-26 04:27:39.628 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: video:1:candidate:559267639 1 udp 2122136831 ::1 40787 typ host generation 0 ufrag Rq3X network-id 4::UNKNOWN
+02-26 04:27:39.628 1716-1912/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"video","socketId":"94b742b9-731e-44c6-b004-356005cf6414","candidate":"candidate:559267639 1 udp 2122136831 ::1 40787 typ host generation 0 ufrag Rq3X network-id 4","label":1}}
+02-26 04:27:39.630 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: video:1:candidate:1510613869 1 udp 2122063615 127.0.0.1 44993 typ host generation 0 ufrag Rq3X network-id 3::UNKNOWN
+02-26 04:27:39.630 1716-1912/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"video","socketId":"94b742b9-731e-44c6-b004-356005cf6414","candidate":"candidate:1510613869 1 udp 2122063615 127.0.0.1 44993 typ host generation 0 ufrag Rq3X network-id 3","label":1}}
+02-26 04:27:39.635 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Session: Available fps ranges: [[5.0:30.0]]
+02-26 04:27:39.637 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Session: Create new camera1 session on camera 1
+02-26 04:27:39.638 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Session: Start capturing
+02-26 04:27:39.647 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: Create session done. Switch state: IDLE
+02-26 04:27:39.647 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceTextureHelper: Setting listener to org.webrtc.-$$Lambda$Camera1Session$IaCl5v4xeWNI0BnOxdpBB-kXaIc@3b509e59
+02-26 04:27:39.732 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: audio:0:candidate:3932785465 1 tcp 1518280447 192.168.57.101 9 typ host tcptype active generation 0 ufrag Rq3X network-id 1::UNKNOWN
+02-26 04:27:39.735 1716-1912/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"audio","socketId":"94b742b9-731e-44c6-b004-356005cf6414","candidate":"candidate:3932785465 1 tcp 1518280447 192.168.57.101 9 typ host tcptype active generation 0 ufrag Rq3X network-id 1","label":0}}
+02-26 04:27:39.739 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: audio:0:candidate:1876313031 1 tcp 1518157055 ::1 33136 typ host tcptype passive generation 0 ufrag Rq3X network-id 4::UNKNOWN
+02-26 04:27:39.748 1716-1912/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"audio","socketId":"94b742b9-731e-44c6-b004-356005cf6414","candidate":"candidate:1876313031 1 tcp 1518157055 ::1 33136 typ host tcptype passive generation 0 ufrag Rq3X network-id 4","label":0}}
+02-26 04:27:39.772 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: audio:0:candidate:344579997 1 tcp 1518083839 127.0.0.1 43303 typ host tcptype passive generation 0 ufrag Rq3X network-id 3::UNKNOWN
+02-26 04:27:39.772 1716-1912/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"audio","socketId":"94b742b9-731e-44c6-b004-356005cf6414","candidate":"candidate:344579997 1 tcp 1518083839 127.0.0.1 43303 typ host tcptype passive generation 0 ufrag Rq3X network-id 3","label":0}}
+02-26 04:27:39.772 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: video:1:candidate:3932785465 1 tcp 1518280447 192.168.57.101 9 typ host tcptype active generation 0 ufrag Rq3X network-id 1::UNKNOWN
+02-26 04:27:39.773 1716-1912/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"video","socketId":"94b742b9-731e-44c6-b004-356005cf6414","candidate":"candidate:3932785465 1 tcp 1518280447 192.168.57.101 9 typ host tcptype active generation 0 ufrag Rq3X network-id 1","label":1}}
+02-26 04:27:39.784 1716-1899/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_answer","data":{"sdp":{"type":"answer","sdp":"v=0\r\no=- 1845488036967440166 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE audio video\r\na=msid-semantic: WMS ARDAMS\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111 103 104 9 102 0 8 106 105 13 110 112 113 126\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:vRA3\r\na=ice-pwd:aF0iWDUcA4PfV7OfhBsrjYo8\r\na=ice-options:trickle renomination\r\na=fingerprint:sha-256 C9:CF:A1:A0:7A:56:F5:4A:5C:27:85:F5:89:76:0B:54:96:28:69:9E:BD:29:21:19:E9:1B:71:07:ED:AF:99:2E\r\na=setup:active\r\na=mid:audio\r\na=extmap:1 urn:ietf:params:rtp-hdrext:ssrc-audio-level\r\na=extmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:3 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=sendrecv\r\na=rtcp-mux\r\na=rtpmap:111 opus/48000/2\r\na=rtcp-fb:111 transport-cc\r\na=fmtp:111 minptime=10;useinbandfec=1\r\na=rtpmap:103 ISAC/16000\r\na=rtpmap:104 ISAC/32000\r\na=rtpmap:9 G722/8000\r\na=rtpmap:102 ILBC/8000\r\na=rtpmap:0 PCMU/8000\r\na=rtpmap:8 PCMA/8000\r\na=rtpmap:106 CN/32000\r\na=rtpmap:105 CN/16000\r\na=rtpmap:13 CN/8000\r\na=rtpmap:110 telephone-event/48000\r\na=rtpmap:112 telephone-event/32000\r\na=rtpmap:113 telephone-event/16000\r\na=rtpmap:126 telephone-event/8000\r\na=ssrc:1754050945 cname:Q4XqHY8MtWP63WS+\r\na=ssrc:1754050945 msid:ARDAMS ARDAMSa0\r\na=ssrc:1754050945 mslabel:ARDAMS\r\na=ssrc:1754050945 label:ARDAMSa0\r\nm=video 9 UDP/TLS/RTP/SAVPF 96 97 98 99 100 101 127\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:vRA3\r\na=ice-pwd:aF0iWDUcA4PfV7OfhBsrjYo8\r\na=ice-options:trickle renomination\r\na=fingerprint:sha-256 C9:CF:A1:A0:7A:56:F5:4A:5C:27:85:F5:89:76:0B:54:96:28:69:9E:BD:29:21:19:E9:1B:71:07:ED:AF:99:2E\r\na=setup:active\r\na=mid:video\r\na=extmap:14 urn:ietf:params:rtp-hdrext:toffset\r\na=extmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:13 urn:3gpp:video-orientation\r\na=extmap:3 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=extmap:5 http://www.webrtc.org/experiments/rtp-hdrext/playout-delay\r\na=extmap:6 http://www.webrtc.org/experiments/rtp-hdrext/video-content-type\r\na=extmap:7 http://www.webrtc.org/experiments/rtp-hdrext/video-timing\r\na=extmap:8 http://www.webrtc.org/experiments/rtp-hdrext/color-space\r\na=sendrecv\r\na=rtcp-mux\r\na=rtcp-rsize\r\na=rtpmap:96 VP8/90000\r\na=rtcp-fb:96 goog-remb\r\na=rtcp-fb:96 transport-cc\r\na=rtcp-fb:96 ccm fir\r\na=rtcp-fb:96 nack\r\na=rtcp-fb:96 nack pli\r\na=rtpmap:97 rtx/90000\r\na=fmtp:97 apt=96\r\na=rtpmap:98 VP9/90000\r\na=rtcp-fb:98 goog-remb\r\na=rtcp-fb:98 transport-cc\r\na=rtcp-fb:98 ccm fir\r\na=rtcp-fb:98 nack\r\na=rtcp-fb:98 nack pli\r\na=rtpmap:99 rtx/90000\r\na=fmtp:99 apt=98\r\na=rtpmap:100 red/90000\r\na=rtpmap:101 rtx/90000\r\na=fmtp:101 apt=100\r\na=rtpmap:127 ulpfec/90000\r\na=ssrc-group:FID 2166798521 1912173017\r\na=ssrc:2166798521 cname:Q4XqHY8MtWP63WS+\r\na=ssrc:2166798521 msid:ARDAMS ARDAMSv0\r\na=ssrc:2166798521 mslabel:ARDAMS\r\na=ssrc:2166798521 label:ARDAMSv0\r\na=ssrc:1912173017 cname:Q4XqHY8MtWP63WS+\r\na=ssrc:1912173017 msid:ARDAMS ARDAMSv0\r\na=ssrc:1912173017 mslabel:ARDAMS\r\na=ssrc:1912173017 label:ARDAMSv0\r\n"},"socketId":"94b742b9-731e-44c6-b004-356005cf6414"}}
+02-26 04:27:39.784 1716-1899/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleAnswer: 
+02-26 04:27:39.784 1716-1899/com.sty.ne.chatroom D/WebRTCManager: onReceiverAnswer() socketId: 94b742b9-731e-44c6-b004-356005cf6414 sdp: v=0
+    o=- 1845488036967440166 2 IN IP4 127.0.0.1
+    s=-
+    t=0 0
+    a=group:BUNDLE audio video
+    a=msid-semantic: WMS ARDAMS
+    m=audio 9 UDP/TLS/RTP/SAVPF 111 103 104 9 102 0 8 106 105 13 110 112 113 126
+    c=IN IP4 0.0.0.0
+    a=rtcp:9 IN IP4 0.0.0.0
+    a=ice-ufrag:vRA3
+    a=ice-pwd:aF0iWDUcA4PfV7OfhBsrjYo8
+    a=ice-options:trickle renomination
+    a=fingerprint:sha-256 C9:CF:A1:A0:7A:56:F5:4A:5C:27:85:F5:89:76:0B:54:96:28:69:9E:BD:29:21:19:E9:1B:71:07:ED:AF:99:2E
+    a=setup:active
+    a=mid:audio
+    a=extmap:1 urn:ietf:params:rtp-hdrext:ssrc-audio-level
+    a=extmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time
+    a=extmap:3 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01
+    a=sendrecv
+    a=rtcp-mux
+    a=rtpmap:111 opus/48000/2
+    a=rtcp-fb:111 transport-cc
+    a=fmtp:111 minptime=10;useinbandfec=1
+    a=rtpmap:103 ISAC/16000
+    a=rtpmap:104 ISAC/32000
+    a=rtpmap:9 G722/8000
+    a=rtpmap:102 ILBC/8000
+    a=rtpmap:0 PCMU/8000
+    a=rtpmap:8 PCMA/8000
+    a=rtpmap:106 CN/32000
+    a=rtpmap:105 CN/16000
+    a=rtpmap:13 CN/8000
+    a=rtpmap:110 telephone-event/48000
+    a=rtpmap:112 telephone-event/32000
+    a=rtpmap:113 telephone-event/16000
+    a=rtpmap:126 telephone-event/8000
+    a=ssrc:1754050945 cname:Q4XqHY8MtWP63WS+
+    a=ssrc:1754050945 msid:ARDAMS ARDAMSa0
+    a=ssrc:1754050945 mslabel:ARDAMS
+    a=ssrc:1754050945 label:ARDAMSa0
+    m=video 9 UDP/TLS/RTP/SAVPF 96 97 98 99 100 101 127
+    c=IN IP4 0.0.0.0
+    a=rtcp:9 IN IP4 0.0.0.0
+    a=ice-ufrag:vRA3
+    a=ice-pwd:aF0iWDUcA4PfV7OfhBsrjYo8
+    a=ice-options:trickle renomination
+    a=fingerprint:sha-256 C9:CF:A1:A0:7A:56:F5:4A:5C:27:85:F5:89:76:0B:54:96:28:69:9E:BD:29:21:19:E9:1B:71:07:ED:AF:99:2E
+    a=setup:active
+    a=mid:video
+    a=extmap:14 urn:ietf:params:rtp-hdrext:toffset
+    a=extmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time
+    a=extmap:13 urn:3gpp:video-orientation
+    a=extmap:3 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01
+    a=extmap:5 http://www.webrtc.org/experiments/rtp-hdrext/playout-delay
+    a=extmap:6 http://www.webrtc.org/experiments/rtp-hdrext/video-content-type
+    a=extmap:7 http://www.webrtc.org/experiments/rtp-hdrext/video-timing
+    a=extmap:8 http://www.webrtc.org/experiments/rtp-hdrext/color-space
+    a=sendrecv
+    a=rtcp-mux
+    a=rtcp-rsize
+    a=rtpmap:96 VP8/90000
+    a=rtcp-fb:96 goog-remb
+    a=rtcp-fb:96 transport-cc
+    a=rtcp-fb:96 ccm fir
+    a=rtcp-fb:96 nack
+    a=rtcp-fb:96 nack pli
+    a=rtpmap:97 rtx/90000
+    a=fmtp:97 apt=96
+    a=rtpmap:98 VP9/90000
+    a=rtcp-fb:98 goog-remb
+    a=rtcp-fb:98 transport-cc
+    a=rtcp-fb:98 ccm fir
+    a=rtcp-fb:98 nack
+    a=rtcp-fb:98 nack pli
+    a=rtpmap:99 rtx/90000
+    a=fmtp:99 apt=98
+    a=rtpmap:100 red/90000
+    a=rtpmap:101 rtx/90000
+    a=fmtp:101 apt=100
+    a=rtpmap:127 ulpfec/90000
+    a=ssrc-group:FID 2166798521 1912173017
+    a=ssrc:2166798521 cname:Q4XqHY8MtWP63WS+
+    a=ssrc:2166798521 msid:ARDAMS ARDAMSv0
+    a=ssrc:2166798521 mslabel:ARDAMS
+    a=ssrc:2166798521 label:ARDAMSv0
+    a=ssrc:1912173017 cname:Q4XqHY8MtWP63WS+
+    a=ssrc:1912173017 msid:ARDAMS ARDAMSv0
+    a=ssrc:1912173017 mslabel:ARDAMS
+    a=ssrc:1912173017 label:ARDAMSv0
+02-26 04:27:39.786 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: video:1:candidate:1876313031 1 tcp 1518157055 ::1 40108 typ host tcptype passive generation 0 ufrag Rq3X network-id 4::UNKNOWN
+02-26 04:27:39.786 1716-1912/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"video","socketId":"94b742b9-731e-44c6-b004-356005cf6414","candidate":"candidate:1876313031 1 tcp 1518157055 ::1 40108 typ host tcptype passive generation 0 ufrag Rq3X network-id 4","label":1}}
+02-26 04:27:39.786 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onIceCandidate iceCandidate: video:1:candidate:344579997 1 tcp 1518083839 127.0.0.1 47491 typ host tcptype passive generation 0 ufrag Rq3X network-id 3::UNKNOWN
+02-26 04:27:39.786 1716-1912/com.sty.ne.chatroom D/JavaWebSocket: sendIceCandidate --> {"eventName":"__ice_candidate","data":{"id":"video","socketId":"94b742b9-731e-44c6-b004-356005cf6414","candidate":"candidate:344579997 1 tcp 1518083839 127.0.0.1 47491 typ host tcptype passive generation 0 ufrag Rq3X network-id 3","label":1}}
+02-26 04:27:39.792 1716-1899/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_ice_candidate","data":{"id":"audio","label":0,"sdpMLineIndex":0,"candidate":"candidate:4132807155 1 udp 2122260223 192.168.8.87 39447 typ host generation 0 ufrag vRA3 network-id 3 network-cost 10","socketId":"94b742b9-731e-44c6-b004-356005cf6414"}}
+02-26 04:27:39.792 1716-1899/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteCandidate: 
+02-26 04:27:39.792 1716-1899/com.sty.ne.chatroom D/WebRTCManager: onRemoteIceCandidate() socketId: 94b742b9-731e-44c6-b004-356005cf6414
+02-26 04:27:39.792 1716-1899/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_ice_candidate","data":{"id":"audio","label":0,"sdpMLineIndex":0,"candidate":"candidate:559267639 1 udp 2122202367 ::1 42810 typ host generation 0 ufrag vRA3 network-id 2","socketId":"94b742b9-731e-44c6-b004-356005cf6414"}}
+02-26 04:27:39.792 1716-1899/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteCandidate: 
+02-26 04:27:39.792 1716-1899/com.sty.ne.chatroom D/WebRTCManager: onRemoteIceCandidate() socketId: 94b742b9-731e-44c6-b004-356005cf6414
+02-26 04:27:39.793 1716-1899/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_ice_candidate","data":{"id":"audio","label":0,"sdpMLineIndex":0,"candidate":"candidate:1510613869 1 udp 2122129151 127.0.0.1 43408 typ host generation 0 ufrag vRA3 network-id 1","socketId":"94b742b9-731e-44c6-b004-356005cf6414"}}
+02-26 04:27:39.793 1716-1899/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteCandidate: 
+02-26 04:27:39.793 1716-1899/com.sty.ne.chatroom D/WebRTCManager: onRemoteIceCandidate() socketId: 94b742b9-731e-44c6-b004-356005cf6414
+02-26 04:27:39.811 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onSignalingChange signalingState: STABLE
+02-26 04:27:39.812 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: initPlayout(sampleRate=44100, channels=1, bufferSizeFactor=1.0)
+02-26 04:27:39.812 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: byteBuffer.capacity: 882
+02-26 04:27:39.813 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: minBufferSizeInBytes: 6336
+02-26 04:27:39.813 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: createAudioTrackOnLollipopOrHigher
+02-26 04:27:39.814 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: nativeOutputSampleRate: 44100
+02-26 04:27:39.821 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: AudioTrack: session ID: 21, channels: 1, sample rate: 44100, max gain: 1.0
+02-26 04:27:39.821 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: VolumeLogger: start@[name=worker_thread - 1911, id=181]
+02-26 04:27:39.821 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: VolumeLogger: audio mode is: MODE_NORMAL
+02-26 04:27:39.822 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: startPlayout
+02-26 04:27:39.872 1716-1899/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_ice_candidate","data":{"id":"audio","label":0,"sdpMLineIndex":0,"candidate":"candidate:1876313031 1 tcp 1518222591 ::1 49394 typ host tcptype passive generation 0 ufrag vRA3 network-id 2","socketId":"94b742b9-731e-44c6-b004-356005cf6414"}}
+02-26 04:27:39.872 1716-1899/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteCandidate: 
+02-26 04:27:39.872 1716-1899/com.sty.ne.chatroom D/WebRTCManager: onRemoteIceCandidate() socketId: 94b742b9-731e-44c6-b004-356005cf6414
+02-26 04:27:39.922 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceEglRenderer: svr_remote_render: Reporting first rendered frame.
+02-26 04:27:39.928 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceEglRenderer: svr_remote_render: Reporting frame resolution changed to 320x240 with rotation 90
+02-26 04:27:39.942 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: svr_remote_render: onMeasure(). New size: 768x1134
+02-26 04:27:39.942 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: svr_remote_render: onMeasure(). New size: 768x1134
+02-26 04:27:39.942 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceViewRenderer: svr_local_render: onMeasure(). New size: 240x360
+02-26 04:27:39.942 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_local_rendersetLayoutAspectRatio: 0.6666667
+02-26 04:27:39.942 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_remote_rendersetLayoutAspectRatio: 0.67724866
+02-26 04:27:39.961 1716-1899/com.sty.ne.chatroom D/JavaWebSocket: onMessage: {"eventName":"_ice_candidate","data":{"id":"audio","label":0,"sdpMLineIndex":0,"candidate":"candidate:344579997 1 tcp 1518149375 127.0.0.1 37724 typ host tcptype passive generation 0 ufrag vRA3 network-id 1","socketId":"94b742b9-731e-44c6-b004-356005cf6414"}}
+02-26 04:27:39.961 1716-1899/com.sty.ne.chatroom D/JavaWebSocket: JavaWebSocket handleRemoteCandidate: 
+02-26 04:27:39.961 1716-1899/com.sty.ne.chatroom D/WebRTCManager: onRemoteIceCandidate() socketId: 94b742b9-731e-44c6-b004-356005cf6414
+
+
+模拟器一对一退出房间：
+02-26 04:28:33.339 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: CameraStatistics: Camera fps: 1.
+02-26 04:28:33.850 1716-1905/com.sty.ne.chatroom W/art: Long monitor contention event with owner method=void org.webrtc.EglBase14Impl.swapBuffers() from EglBase14Impl.java:215 waiters=0 for 279ms
+02-26 04:28:34.147 1716-1915/com.sty.ne.chatroom W/art: Long monitor contention event with owner method=void org.webrtc.EglBase14Impl.swapBuffers() from EglBase14Impl.java:215 waiters=0 for 177ms
+02-26 04:28:35.282 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_local_renderReleasing.
+02-26 04:28:35.290 1716-1934/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:35.350 1716-1934/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:35.413 1716-1934/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:35.517 1716-1934/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:35.570 1716-1934/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:35.641 1716-1934/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:35.654 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onIceConnectionChange iceConnectionState: CLOSED
+02-26 04:28:35.665 1716-1912/com.sty.ne.chatroom D/PeerConnectionManager: onSignalingChange signalingState: CLOSED
+02-26 04:28:35.700 1716-1934/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:35.751 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: CameraStatistics: Camera fps: 1.
+02-26 04:28:35.765 1716-1934/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:35.825 1716-1934/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:35.840 1716-1905/com.sty.ne.chatroom W/art: Long monitor contention event with owner method=void org.webrtc.EglBase14Impl.swapBuffers() from EglBase14Impl.java:215 waiters=0 for 557ms
+02-26 04:28:35.840 1716-1905/com.sty.ne.chatroom I/org.webrtc.Logging: GlShader: Deleting shader.
+02-26 04:28:35.840 1716-1905/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_local_rendereglBase detach and release.
+02-26 04:28:35.941 1716-1934/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:36.098 1716-1915/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:36.141 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: stopRecording
+02-26 04:28:36.161 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: stopThread
+02-26 04:28:36.210 1716-1940/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: doAudioRecordStateCallback: STOP
+02-26 04:28:36.225 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioEffectsExternal: release
+02-26 04:28:36.225 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioRecordExternal: releaseAudioResources
+02-26 04:28:36.259 1716-1905/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_local_renderQuitting render thread.
+02-26 04:28:36.260 1716-1907/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_remote_renderDuration: 6579 ms. Frames received: 88. Dropped: 68. Rendered: 20. Render fps: 3.0. Average render time: 317801 us. Average swapBuffer time: 213717 us.
+02-26 04:28:36.262 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_local_renderReleasing done.
+02-26 04:28:36.262 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_remote_renderReleasing.
+02-26 04:28:36.266 1716-1907/com.sty.ne.chatroom I/org.webrtc.Logging: GlShader: Deleting shader.
+02-26 04:28:36.266 1716-1907/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_remote_rendereglBase detach and release.
+02-26 04:28:36.312 1716-1934/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:36.317 1716-1934/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:36.317 1716-1934/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:36.317 1716-1934/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:36.366 1716-1934/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:36.389 1716-1907/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_remote_renderQuitting render thread.
+02-26 04:28:36.396 1716-1716/com.sty.ne.chatroom I/org.webrtc.Logging: EglRenderer: svr_remote_renderReleasing done.
+02-26 04:28:36.602 1716-1932/com.sty.ne.chatroom W/art: Native thread exiting without having called DetachCurrentThread (maybe it's going to use a pthread_key_create destructor?): Thread[39,tid=1932,Native,Thread*=0xeec48400,peer=0x12fce0a0,"EncoderQueue - 1932"]
+02-26 04:28:36.608 1716-1915/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:36.634 1716-1934/com.sty.ne.chatroom W/art: Native thread exiting without having called DetachCurrentThread (maybe it's going to use a pthread_key_create destructor?): Thread[42,tid=1934,Native,Thread*=0xeec49400,peer=0x12fe50a0,"IncomingVideoSt - 1934"]
+02-26 04:28:36.656 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: VolumeLogger: stop@[name=worker_thread - 1911, id=181]
+02-26 04:28:36.667 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: stopPlayout
+02-26 04:28:36.667 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: stopThread
+02-26 04:28:36.667 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: Stopping the AudioTrackThread...
+02-26 04:28:36.725 1716-1915/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:36.788 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: AudioTrackThread has now been stopped.
+02-26 04:28:36.788 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: Calling AudioTrack.stop...
+02-26 04:28:36.797 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: AudioTrack.stop is done.
+02-26 04:28:36.798 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: doAudioTrackStateCallback: 1
+02-26 04:28:36.798 1716-1911/com.sty.ne.chatroom I/org.webrtc.Logging: WebRtcAudioTrackExternal: releaseAudioResources
+02-26 04:28:36.829 1716-1915/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:36.876 1716-1915/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:36.891 1716-1910/com.sty.ne.chatroom I/org.webrtc.Logging: NetworkMonitor: Stop monitoring with native observer -288791840
+02-26 04:28:36.891 1716-1910/com.sty.ne.chatroom I/org.webrtc.Logging: NetworkMonitorAutoDetect: Unregister network callback
+02-26 04:28:36.892 1716-1858/com.sty.ne.chatroom D/ConnectivityManager.CallbackHandler: CM callback handler got msg 524296
+02-26 04:28:36.932 1716-1915/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:37.067 1716-1915/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:37.205 1716-1915/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:37.312 1716-1915/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:37.409 1716-1915/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:37.443 1716-1915/com.sty.ne.chatroom E/ProxyVideoSink: Dropping frame in proxy because target is null.
+02-26 04:28:37.460 1716-1735/com.sty.ne.chatroom W/EGL_emulation: eglSurfaceAttrib not implemented
+02-26 04:28:37.460 1716-1735/com.sty.ne.chatroom W/OpenGLRenderer: Failed to set EGL_SWAP_BEHAVIOR on surface 0xdce0a8a0, error=EGL_SUCCESS
+02-26 04:28:37.477 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: Stop capture
+02-26 04:28:37.477 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: Stop capture: Nulling session
+02-26 04:28:37.478 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Session: Stop camera1 session on camera 1
+02-26 04:28:37.478 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Session: Stop internal
+02-26 04:28:37.478 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceTextureHelper: stopListening()
+02-26 04:28:37.478 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: Stop capture done
+02-26 04:28:37.478 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: dispose
+02-26 04:28:37.478 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: Stop capture
+02-26 04:28:37.478 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: Stop capture: No session open
+02-26 04:28:37.478 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: CameraCapturer: Stop capture done
+02-26 04:28:37.478 1716-1909/com.sty.ne.chatroom I/org.webrtc.Logging: SurfaceTextureHelper: dispose()
+02-26 04:28:37.500 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: Camera1Session: Stop done
+02-26 04:28:37.500 1716-1915/com.sty.ne.chatroom I/org.webrtc.Logging: GlShader: Deleting shader.
+02-26 04:28:37.514 1716-1912/com.sty.ne.chatroom W/art: Native thread exiting without having called DetachCurrentThread (maybe it's going to use a pthread_key_create destructor?): Thread[33,tid=1912,Native,Thread*=0xeec43c00,peer=0x12f260a0,"signaling_threa - 1912"]
+02-26 04:28:37.516 1716-1911/com.sty.ne.chatroom W/art: Native thread exiting without having called DetachCurrentThread (maybe it's going to use a pthread_key_create destructor?): Thread[31,tid=1911,Native,Thread*=0xe1340400,peer=0x12f1d0a0,"worker_thread - 1911"]
+02-26 04:28:37.517 1716-1910/com.sty.ne.chatroom W/art: Native thread exiting without having called DetachCurrentThread (maybe it's going to use a pthread_key_create destructor?): Thread[32,tid=1910,Native,Thread*=0xeec3e000,peer=0x12f1f0a0,"network_thread - 1910"]
+02-26 04:28:37.526 1716-1899/com.sty.ne.chatroom D/JavaWebSocket: onClose code: 1000, reason: , remote: false
+02-26 04:28:37.526 1716-1899/com.sty.ne.chatroom D/WebRTCManager: onWebSocketOpenFailed(): 
+02-26 04:28:38.302 1716-1716/com.sty.ne.chatroom D/LeakCanary: Watching instance of leakcanary.internal.ViewModelClearedWatcher (leakcanary.internal.ViewModelClearedWatcher received ViewModel#onCleared() callback) with key 210afb4b-5467-4271-8843-c3ca3a26ddd4
+02-26 04:28:38.302 1716-1716/com.sty.ne.chatroom D/LeakCanary: Watching instance of androidx.fragment.app.FragmentManagerViewModel (androidx.fragment.app.FragmentManagerViewModel received ViewModel#onCleared() callback) with key 46c78a0a-5f5a-4598-87e5-dcdc2d21bf21
+02-26 04:28:38.303 1716-1716/com.sty.ne.chatroom D/LeakCanary: Watching instance of com.sty.ne.chatroom.ui.ChatSingleActivity (com.sty.ne.chatroom.ui.ChatSingleActivity received Activity#onDestroy() callback) with key 438c5915-322f-4dca-9d76-51a07a51c720
+02-26 04:28:38.303 1716-1716/com.sty.ne.chatroom D/LeakCanary: Watching instance of android.widget.RelativeLayout (com.sty.ne.chatroom.ui.ChatSingleFragment received Fragment#onDestroyView() callback (references to its views should be cleared to prevent leaks)) with key d1c47bc7-cced-497b-883d-e872c3e7cdca
+02-26 04:28:38.303 1716-1716/com.sty.ne.chatroom D/LeakCanary: Watching instance of androidx.loader.app.LoaderManagerImpl$LoaderViewModel (androidx.loader.app.LoaderManagerImpl$LoaderViewModel received ViewModel#onCleared() callback) with key ba657b6e-162e-4f9d-a775-29856c6f5d9c
+02-26 04:28:38.303 1716-1716/com.sty.ne.chatroom D/LeakCanary: Watching instance of leakcanary.internal.ViewModelClearedWatcher (leakcanary.internal.ViewModelClearedWatcher received ViewModel#onCleared() callback) with key de4b7352-f27e-4d48-a995-5bf035e98c1b
+02-26 04:28:38.304 1716-1716/com.sty.ne.chatroom D/LeakCanary: Watching instance of com.sty.ne.chatroom.ui.ChatSingleFragment (com.sty.ne.chatroom.ui.ChatSingleFragment received Fragment#onDestroy() callback) with key acd4bd5f-d133-4d80-956e-318cb7f5763b

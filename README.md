@@ -4,13 +4,17 @@
 
 ## 一、理论
 
-### 1.1 `webrtc`之`p2p`通讯流程
+### 1.1 参考文档
+
+[点对点通讯--实现内网之间直接通讯的穿透原理与机制](https://github.com/tianyalu/NeWebRTCP2PCommunication)
+
+[java websocket clientssl(wss)](https://blog.csdn.net/vertx/article/details/8469535)
+
+### 1.2 `webrtc`之`p2p`通讯流程
 
 ![image](https://github.com/tianyalu/NeChatRoom/raw/master/show/webrtc_p2p_process.png)
 
-### 1.2 参考文档
 
-[java websocket clientssl(wss)](https://blog.csdn.net/vertx/article/details/8469535)
 
 ## 二、实践
 
